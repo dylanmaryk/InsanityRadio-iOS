@@ -11,6 +11,7 @@
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
 		FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC8D8A311B1B8B04004E2065 /* LICENSE */; };
+		FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A331B1BA7B4004E2065 /* DataModel.swift */; };
 		FCB690521B1397A2005F83D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690511B1397A2005F83D7 /* AppDelegate.swift */; };
 		FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB690571B1397A2005F83D7 /* Main.storyboard */; };
 		FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCB6905A1B1397A3005F83D7 /* Images.xcassets */; };
@@ -39,6 +40,7 @@
 		FC8D8A2B1B1B883E004E2065 /* Radio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radio.m; sourceTree = "<group>"; };
 		FC8D8A301B1B88CE004E2065 /* RadioBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RadioBridge.h; path = ../InsanityRadio/RadioBridge.h; sourceTree = "<group>"; };
 		FC8D8A311B1B8B04004E2065 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FC8D8A331B1BA7B4004E2065 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		FCB6904C1B1397A2005F83D7 /* InsanityRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsanityRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB690501B1397A2005F83D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCB690511B1397A2005F83D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				FCB690511B1397A2005F83D7 /* AppDelegate.swift */,
 				FCB690731B139845005F83D7 /* PlayerViewController.swift */,
 				FCB690751B139854005F83D7 /* ScheduleViewController.swift */,
+				FC8D8A331B1BA7B4004E2065 /* DataModel.swift */,
 				FCB690571B1397A2005F83D7 /* Main.storyboard */,
 				FCB6905A1B1397A3005F83D7 /* Images.xcassets */,
 				FCB6905C1B1397A3005F83D7 /* LaunchScreen.xib */,
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */,
 				FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */,
 				FCB690761B139854005F83D7 /* ScheduleViewController.swift in Sources */,
 				FCB690521B1397A2005F83D7 /* AppDelegate.swift in Sources */,
