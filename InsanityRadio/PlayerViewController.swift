@@ -17,22 +17,17 @@ class PlayerViewController: UIViewController {
     }
     
     func updateUI() {
-        let dataDict = DataModel.getData()
+        let nowPlaying = DataModel.getNowPlaying()
         
-        let nowPlaying: NSDictionary = dataDict["nowPlaying"] as! NSDictionary
-        let nowPlayingSong: String = nowPlaying["song"] as! String
-        let nowPlayingArtist: String = nowPlaying["artist"] as! String
+        // Update labels
         
-        let currentShow: NSDictionary = dataDict["currentShow"] as! NSDictionary
-        let currentShowName: String = currentShow["showName"] as! String
-        let currentShowPresenters: String = currentShow["showPresenters"] as! String
-        let currentShowLink: String = currentShow["linkURL"] as! String
-        let currentShowImage: String = currentShow["imageURL"] as! String
+        let currentShow = DataModel.getCurrentShow()
         
-        // Update labels, images etc.
+        // Get image, update labels
     }
     
     func metaTitleUpdated(title: NSString) {
+        DataModel.updateData()
         updateUI()
     }
 }
