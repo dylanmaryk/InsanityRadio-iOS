@@ -9,7 +9,7 @@
 import UIKit
 
 class ScheduleViewController: UIViewController {
-    var schedule: [String: [[String: String]]] = [String: [[String: String]]]()
+    var schedule: [String: [[String: String]]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()

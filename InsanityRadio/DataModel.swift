@@ -15,10 +15,10 @@ class DataModel {
         if nowPlayingData != nil {
             let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData!) as! [String: String]
             
-            let song = nowPlaying["song"]
-            let artist = nowPlaying["artist"]
+            let song = nowPlaying["song"]!
+            let artist = nowPlaying["artist"]!
             
-            return (song!, artist!)
+            return (song, artist)
         }
         
         return ("", "")
@@ -30,18 +30,19 @@ class DataModel {
         if currentShowData != nil {
             let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData!) as! [String: String]
             
-            let name = currentShow["showName"]
-            let presenters = currentShow["showPresenters"]
-            let link = currentShow["linkURL"]
-            let imageURL = currentShow["imageURL"]
+            let name = currentShow["showName"]!
+            let presenters = currentShow["showPresenters"]!
+            let link = currentShow["linkURL"]!
+            let imageURL = currentShow["imageURL"]!
             
-            return (name!, presenters!, link!, imageURL!)
+            return (name, presenters, link, imageURL)
         }
         
         return ("", "", "", "")
     }
     
     static func getSchedule() -> [String: [[String: String]]] {
+        /*
         let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData
         
         if scheduleData != nil {
@@ -49,8 +50,8 @@ class DataModel {
             
             return schedule
         }
+        */
         
-        // Return empty array of key-value pairs
         return [String: [[String: String]]]()
     }
     
