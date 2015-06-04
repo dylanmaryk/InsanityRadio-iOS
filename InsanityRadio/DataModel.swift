@@ -41,8 +41,7 @@ class DataModel {
         return ("", "", "", "")
     }
     
-    static func getSchedule() -> [String: [[String: String]]] {
-        /*
+    static func getSchedule() -> [String: [[String: String]]]? {
         let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData
         
         if scheduleData != nil {
@@ -50,9 +49,8 @@ class DataModel {
             
             return schedule
         }
-        */
         
-        return [String: [[String: String]]]()
+        return nil
     }
     
     static func updateData() {
