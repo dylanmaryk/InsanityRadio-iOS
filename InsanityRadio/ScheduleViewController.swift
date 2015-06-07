@@ -16,9 +16,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scheduleTableView.delegate = self;
-        scheduleTableView.dataSource = self;
-        
         schedule = DataModel.getSchedule()
         
         if schedule == nil {
@@ -40,16 +37,23 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let day = dayForSection(section)
-        
-        return schedule![day]!.count
+        return schedule![dayForSection(section)]!.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 54
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let showCell = tableView.dequeueReusableCellWithIdentifier("ShowCell", forIndexPath: indexPath) as! UITableViewCell
-        showCell.textLabel?.text = "Test"
+        let showCell = tableView.dequeueReusableCellWithIdentifier("ShowCell", forIndexPath: indexPath) as! ShowTableViewCell
+        showCell.setupCell(showForIndexPath(indexPath))
         
         return showCell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let linkURL = showForIndexPath(indexPath)["linkURL"]!
+        UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
     }
     
     func dayForSection(day: Int) -> String {
@@ -71,5 +75,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             default:
                 return ""
         }
+    }
+    
+    func showForIndexPath(indexPath: NSIndexPath) -> [String: String] {
+        return schedule![dayForSection(indexPath.section)]![indexPath.row]
     }
 }
