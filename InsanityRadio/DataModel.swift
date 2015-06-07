@@ -24,18 +24,18 @@ class DataModel {
         return ("", "")
     }
     
-    static func getCurrentShow() -> (name: String, presenters: String, link: String, imageURL: String) {
+    static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String) {
         let currentShowData = NSUserDefaults.standardUserDefaults().objectForKey("currentShow") as? NSData
         
         if currentShowData != nil {
             let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData!) as! [String: String]
             
+            let day = currentShow["dayOfTheWeek"]!
             let name = currentShow["showName"]!
             let presenters = currentShow["showPresenters"]!
             let link = currentShow["linkURL"]!
-            let imageURL = currentShow["imageURL"]!
             
-            return (name, presenters, link, imageURL)
+            return (day, name, presenters, link)
         }
         
         return ("", "", "", "")

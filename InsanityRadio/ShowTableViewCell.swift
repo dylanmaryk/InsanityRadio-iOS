@@ -16,6 +16,8 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showImageView: UIImageView!
     
     func setupCell(show: [String: String]) {
+        self.layoutMargins = UIEdgeInsetsZero
+        
         showTypeView.backgroundColor = colorForShowType(show["showType"]!)
         showClockLabel.text = show["startClock"]
         showNameLabel.text = show["showName"]
