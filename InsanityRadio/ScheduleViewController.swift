@@ -19,15 +19,18 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         schedule = DataModel.getSchedule()
         
         if schedule == nil {
-            // Show error message, hide table view?
+            scheduleTableView.hidden = true
+            UIAlertView(title: "Cannot Download Schedule", message: "Please connect to the Internet to see the schedule.", delegate: self, cancelButtonTitle: "OK").show()
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let currentShowDay = DataModel.getCurrentShow().day
-        scheduleTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionForDay(currentShowDay)), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        if schedule != nil  {
+            let currentShowDay = DataModel.getCurrentShow().day
+            scheduleTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionForDay(currentShowDay)), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        }
     }
     
     
