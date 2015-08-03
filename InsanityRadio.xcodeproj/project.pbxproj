@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insanity-icon.png"; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC5EA4171B6CFFBB0064AF60 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		FC8D8A251B1B883E004E2065 /* Radio */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 			children = (
 				FCB6904E1B1397A2005F83D7 /* InsanityRadio */,
 				FCB690661B1397A3005F83D7 /* InsanityRadioTests */,
+				FC5EA4171B6CFFBB0064AF60 /* Images */,
 				FC8D8A251B1B883E004E2065 /* Radio */,
 				FCAE7AD51B23E9A1005785AA /* AFNetworking */,
 				FCB6904D1B1397A2005F83D7 /* Products */,
@@ -285,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
+				FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,

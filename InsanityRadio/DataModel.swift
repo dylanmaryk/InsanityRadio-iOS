@@ -10,10 +10,8 @@ import Foundation
 
 class DataModel {
     static func getNowPlaying() -> (song: String, artist: String) {
-        let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData
-        
-        if nowPlayingData != nil {
-            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData!) as! [String: String]
+        if let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData {
+            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
             
             let song = nowPlaying["song"]!
             let artist = nowPlaying["artist"]!
@@ -24,41 +22,34 @@ class DataModel {
         return ("", "")
     }
     
-    static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String) {
-        let currentShowData = NSUserDefaults.standardUserDefaults().objectForKey("currentShow") as? NSData
-        
-        if currentShowData != nil {
-            let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData!) as! [String: String]
+    static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
+        if let currentShowData = NSUserDefaults.standardUserDefaults().objectForKey("currentShow") as? NSData {
+            let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData) as! [String: String]
             
             let day = currentShow["dayOfTheWeek"]!
             let name = currentShow["showName"]!
             let presenters = currentShow["showPresenters"]!
             let link = currentShow["linkURL"]!
+            let imageURL = currentShow["imageURL"]!
             
-            return (day, name, presenters, link)
+            return (day, name, presenters, link, imageURL)
         }
         
-        return ("", "", "", "")
+        return ("", "", "", "", "")
     }
     
     static func getSchedule() -> [String: [[String: String]]]? {
-        let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData
-        
-        if scheduleData != nil {
-            let schedule = NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData!) as! [String: [[String: String]]]
-            
-            return schedule
+        if let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData) as? [String: [[String: String]]]
         }
         
         return nil
     }
     
     static func updateData() {
-        let dataJSON = NSData(contentsOfURL: NSURL(string: "http://www.insanityradio.com/app.json")!)
-        
-        if dataJSON != nil {
+        if let dataJSON = NSData(contentsOfURL: NSURL(string: "http://www.insanityradio.com/app.json")!) {
             var error = NSError?()
-            let dataDict = NSJSONSerialization.JSONObjectWithData(dataJSON!, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
+            let dataDict = NSJSONSerialization.JSONObjectWithData(dataJSON, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
             
             let nowPlaying = dataDict["nowPlaying"] as! [String: String]
             let currentShow = dataDict["currentShow"] as! [String: String]

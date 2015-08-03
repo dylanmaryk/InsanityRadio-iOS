@@ -13,7 +13,6 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showClockLabel: UILabel!
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var showPresentersLabel: UILabel!
-    @IBOutlet weak var showImageView: UIImageView!
     
     func setupCell(show: [String: String]) {
         self.layoutMargins = UIEdgeInsetsZero
