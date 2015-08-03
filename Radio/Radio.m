@@ -158,7 +158,8 @@
     if (DEBUG_LOG) {
         NSLog(@"attemptCount = %u", attemptCount);
     }
-	if (attemptCount == 10) {
+	// if (attemptCount == 10) {
+    if (attemptCount == 1) {
         if (radioDelegate && [radioDelegate respondsToSelector:@selector(connectProblem)]) {
             [radioDelegate connectProblem];
         }

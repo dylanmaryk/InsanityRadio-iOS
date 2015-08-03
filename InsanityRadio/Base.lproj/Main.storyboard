@@ -28,25 +28,49 @@
                                     <navigationItem title="Insanity Radio" id="TNu-m5-gyG"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Name with Show Presenters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-7a-Lzx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-7a-Lzx">
                                 <rect key="frame" x="16" y="74" width="568" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="mIH-dR-ILe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-MC-GTQ">
-                                <rect key="frame" x="16" y="124" width="568" height="367"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insanity-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-MC-GTQ">
+                                <rect key="frame" x="16" y="124" width="568" height="319"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name and Song Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-EG-Pui">
-                                <rect key="frame" x="16" y="499" width="568" height="42"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AF4-Um-RmH">
+                                <rect key="frame" x="0.0" y="501" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMF-Yb-3xE">
+                                        <rect key="frame" x="8" y="3" width="44" height="44"/>
+                                        <state key="normal" image="stop.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="Vdq-Hi-bVr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1C-hw-5zK">
+                                        <rect key="frame" x="60" y="3" width="44" height="44"/>
+                                        <state key="normal" image="play.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playPauseButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="bVT-n3-rTv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-EG-Pui">
+                                <rect key="frame" x="16" y="451" width="568" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="ape-in-NI7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -55,15 +79,19 @@
                             <constraint firstItem="RdU-MC-GTQ" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="56z-2t-XmT"/>
                             <constraint firstItem="RdU-MC-GTQ" firstAttribute="leading" secondItem="Gdh-7a-Lzx" secondAttribute="leading" id="5F9-Uf-rh5"/>
                             <constraint firstItem="Srw-EG-Pui" firstAttribute="leading" secondItem="RdU-MC-GTQ" secondAttribute="leading" id="Cer-uz-jQ2"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="RdU-MC-GTQ" secondAttribute="bottom" constant="60" id="MyN-cJ-POG"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="RdU-MC-GTQ" secondAttribute="bottom" constant="108" id="MyN-cJ-POG"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Gdh-7a-Lzx" secondAttribute="bottom" constant="435" id="ReX-M0-3EI"/>
                             <constraint firstAttribute="trailing" secondItem="b4I-F4-Lv7" secondAttribute="trailing" id="SUz-vj-P9R"/>
                             <constraint firstItem="RdU-MC-GTQ" firstAttribute="top" secondItem="Gdh-7a-Lzx" secondAttribute="bottom" constant="8" symbolic="YES" id="WwK-Xh-A08"/>
+                            <constraint firstItem="AF4-Um-RmH" firstAttribute="trailing" secondItem="b4I-F4-Lv7" secondAttribute="trailing" id="XQC-iH-qml"/>
+                            <constraint firstItem="AF4-Um-RmH" firstAttribute="leading" secondItem="b4I-F4-Lv7" secondAttribute="leading" id="XiD-q2-5fK"/>
                             <constraint firstItem="b4I-F4-Lv7" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="YGT-Vh-IEO"/>
                             <constraint firstItem="Srw-EG-Pui" firstAttribute="trailing" secondItem="RdU-MC-GTQ" secondAttribute="trailing" id="Zly-oX-klh"/>
+                            <constraint firstItem="AF4-Um-RmH" firstAttribute="top" secondItem="Srw-EG-Pui" secondAttribute="bottom" constant="8" symbolic="YES" id="bia-by-Bx5"/>
                             <constraint firstItem="Gdh-7a-Lzx" firstAttribute="top" secondItem="b4I-F4-Lv7" secondAttribute="bottom" constant="10" id="dJc-CL-2sj"/>
                             <constraint firstItem="b4I-F4-Lv7" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="j8C-Ev-V44"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Srw-EG-Pui" secondAttribute="bottom" constant="10" id="nEx-9f-MzM"/>
+                            <constraint firstItem="AF4-Um-RmH" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="kgD-m4-x5F"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Srw-EG-Pui" secondAttribute="bottom" constant="58" id="nEx-9f-MzM"/>
                             <constraint firstItem="Srw-EG-Pui" firstAttribute="top" secondItem="RdU-MC-GTQ" secondAttribute="bottom" constant="8" symbolic="YES" id="p10-aE-Auo"/>
                             <constraint firstItem="RdU-MC-GTQ" firstAttribute="trailing" secondItem="Gdh-7a-Lzx" secondAttribute="trailing" id="pLu-8T-YGp"/>
                             <constraint firstItem="Gdh-7a-Lzx" firstAttribute="centerX" secondItem="b4I-F4-Lv7" secondAttribute="centerX" id="pju-rv-esZ"/>
@@ -82,6 +110,8 @@
                         <outlet property="albumArtImageView" destination="RdU-MC-GTQ" id="7GX-mz-j7L"/>
                         <outlet property="currentShowLabel" destination="Gdh-7a-Lzx" id="ism-rY-q9h"/>
                         <outlet property="nowPlayingLabel" destination="Srw-EG-Pui" id="CWN-hF-TER"/>
+                        <outlet property="playPauseButton" destination="I1C-hw-5zK" id="w2S-1t-Uc0"/>
+                        <outlet property="stopButton" destination="dMF-Yb-3xE" id="ed7-X5-EZ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -198,4 +228,9 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="insanity-icon.png" width="54" height="98"/>
+        <image name="play.png" width="100" height="100"/>
+        <image name="stop.png" width="100" height="100"/>
+    </resources>
 </document>

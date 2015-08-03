@@ -20,7 +20,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         if schedule == nil {
             scheduleTableView.hidden = true
-            UIAlertView(title: "Cannot Download Schedule", message: "Please connect to the Internet to see the schedule.", delegate: self, cancelButtonTitle: "OK").show()
+            UIAlertView(title: "Cannot Download Schedule", message: "There was a problem downloading the schedule. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
         }
     }
     
