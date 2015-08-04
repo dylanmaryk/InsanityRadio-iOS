@@ -46,6 +46,15 @@ class DataModel {
         return nil
     }
     
+    static func getShareText() -> String {
+        if let shareTextData = NSUserDefaults.standardUserDefaults().objectForKey("shareText") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextData) as! String
+        }
+        
+        // Determine final default text before release
+        return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+    }
+    
     static func updateData() {
         let manager = AFHTTPRequestOperationManager()
         manager.responseSerializer = AFJSONResponseSerializer()
@@ -53,10 +62,12 @@ class DataModel {
             let nowPlaying = responseObject["nowPlaying"] as? [String: String]
             let currentShow = responseObject["currentShow"] as? [String: String]
             let schedule = responseObject["schedule"] as? [String: [[String: String]]]
+            let shareText =  responseObject["shareText"] as? String
             
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(currentShow!), forKey: "currentShow")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(shareText!), forKey: "shareText")
             
             NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in

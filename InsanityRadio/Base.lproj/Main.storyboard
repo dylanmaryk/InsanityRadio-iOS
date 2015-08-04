@@ -29,7 +29,20 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Insanity Radio" id="TNu-m5-gyG"/>
+                                    <navigationItem title="Insanity Radio" id="TNu-m5-gyG">
+                                        <barButtonItem key="rightBarButtonItem" id="Mja-hq-nej">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xwx-eb-6nd">
+                                                <rect key="frame" x="562" y="12" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="share.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="shareButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="BjR-KS-25U"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-7a-Lzx">
@@ -37,7 +50,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="mIH-dR-ILe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -72,7 +85,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="ape-in-NI7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -270,5 +283,6 @@
     <resources>
         <image name="insanity-icon.png" width="54" height="98"/>
         <image name="play.png" width="100" height="100"/>
+        <image name="share.png" width="100" height="100"/>
     </resources>
 </document>

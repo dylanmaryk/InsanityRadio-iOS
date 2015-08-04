@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC42CFC01B716E46003A3251 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFBF1B716E46003A3251 /* pause.png */; };
+		FC42CFC21B716E4B003A3251 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC11B716E4B003A3251 /* play.png */; };
+		FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC31B716EC1003A3251 /* share-filled.png */; };
+		FC42CFC61B717204003A3251 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC51B717204003A3251 /* share.png */; };
 		FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
 		FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC8D8A311B1B8B04004E2065 /* LICENSE */; };
 		FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A331B1BA7B4004E2065 /* DataModel.swift */; };
-		FC90C1EB1B70048600FAEAF9 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = FC90C1EA1B70048600FAEAF9 /* pause.png */; };
-		FC90C1ED1B70048D00FAEAF9 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC90C1EC1B70048D00FAEAF9 /* play.png */; };
-		FC90C1EF1B70049600FAEAF9 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC90C1EE1B70049600FAEAF9 /* stop.png */; };
 		FCAE7AD41B23C8B3005785AA /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */; };
 		FCAE7AE91B23E9A1005785AA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD71B23E9A1005785AA /* AFHTTPRequestOperation.m */; };
 		FCAE7AEA1B23E9A1005785AA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD91B23E9A1005785AA /* AFHTTPRequestOperationManager.m */; };
@@ -46,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC42CFBF1B716E46003A3251 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		FC42CFC11B716E4B003A3251 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		FC42CFC31B716EC1003A3251 /* share-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-filled.png"; sourceTree = "<group>"; };
+		FC42CFC51B717204003A3251 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insanity-icon.png"; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
@@ -55,9 +60,6 @@
 		FC8D8A2B1B1B883E004E2065 /* Radio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radio.m; sourceTree = "<group>"; };
 		FC8D8A311B1B8B04004E2065 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC8D8A331B1BA7B4004E2065 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		FC90C1EA1B70048600FAEAF9 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
-		FC90C1EC1B70048D00FAEAF9 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
-		FC90C1EE1B70049600FAEAF9 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTableViewCell.swift; sourceTree = "<group>"; };
 		FCAE7AD61B23E9A1005785AA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		FCAE7AD71B23E9A1005785AA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -114,9 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */,
-				FC90C1EA1B70048600FAEAF9 /* pause.png */,
-				FC90C1EC1B70048D00FAEAF9 /* play.png */,
-				FC90C1EE1B70049600FAEAF9 /* stop.png */,
+				FC42CFBF1B716E46003A3251 /* pause.png */,
+				FC42CFC11B716E4B003A3251 /* play.png */,
+				FC42CFC51B717204003A3251 /* share.png */,
+				FC42CFC31B716EC1003A3251 /* share-filled.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -304,11 +307,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC90C1EB1B70048600FAEAF9 /* pause.png in Resources */,
+				FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */,
+				FC42CFC21B716E4B003A3251 /* play.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
-				FC90C1ED1B70048D00FAEAF9 /* play.png in Resources */,
-				FC90C1EF1B70049600FAEAF9 /* stop.png in Resources */,
+				FC42CFC01B716E46003A3251 /* pause.png in Resources */,
 				FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */,
+				FC42CFC61B717204003A3251 /* share.png in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,

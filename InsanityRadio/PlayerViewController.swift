@@ -121,6 +121,11 @@ class PlayerViewController: UIViewController {
         albumArtImageView.image = UIImage(named: "insanity-icon.png")
     }
     
+    @IBAction func shareButtonTapped() {
+        let activityViewController = UIActivityViewController(activityItems: [DataModel.getShareText()], applicationActivities: nil)
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
     func metaTitleUpdated(title: NSString) {
         DataModel.updateData()
     }
