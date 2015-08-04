@@ -24,9 +24,9 @@ class PlayerViewController: UIViewController {
         
         radio.connect("http://stream.insanityradio.com:8000/insanity320.mp3", withDelegate: self, withGain: (1.0))
         
-        manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData;
+        manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name:"DataUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
     }
     
     func updateUI() {
@@ -107,7 +107,7 @@ class PlayerViewController: UIViewController {
         
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
-        playPauseButton.imageView?.image = UIImage(named: "pause.png")
+        playPauseButton.imageView?.image = UIImage(named: "stop.png")
     }
     
     func radioPaused() {

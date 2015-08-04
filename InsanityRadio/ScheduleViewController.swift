@@ -18,7 +18,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         updateUI()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name:"DataUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
     }
     
     func updateUI() {

@@ -57,6 +57,7 @@ class DataModel {
     
     static func updateData() {
         let manager = AFHTTPRequestOperationManager()
+        manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             let nowPlaying = responseObject["nowPlaying"] as? [String: String]
