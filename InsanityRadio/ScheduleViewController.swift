@@ -16,23 +16,29 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateUI()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name:"DataUpdated", object: nil)
+    }
+    
+    func updateUI() {
         schedule = DataModel.getSchedule()
         
         if schedule == nil {
             scheduleTableView.hidden = true
             UIAlertView(title: "Cannot Download Schedule", message: "There was a problem downloading the schedule. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
+        } else {
+            scheduleTableView.hidden = false
+            scheduleTableView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        if schedule != nil  {
-            let currentShowDay = DataModel.getCurrentShow().day
-            scheduleTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionForDay(currentShowDay)), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        let currentShowDay = DataModel.getCurrentShow().day
+        let sectionForCurrentShowDay = sectionForDay(currentShowDay)
+        
+        if numberOfSectionsInTableView(scheduleTableView) > 0 {
+            scheduleTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionForCurrentShowDay), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         }
     }
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if schedule != nil {

@@ -25,6 +25,8 @@ class PlayerViewController: UIViewController {
         radio.connect("http://stream.insanityradio.com:8000/insanity320.mp3", withDelegate: self, withGain: (1.0))
         
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData;
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name:"DataUpdated", object: nil)
     }
     
     func updateUI() {
@@ -114,17 +116,16 @@ class PlayerViewController: UIViewController {
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "play.png")
+        currentShowLabel.text = ""
+        nowPlayingLabel.text = ""
+        albumArtImageView.image = UIImage(named: "insanity-icon.png")
     }
     
     func metaTitleUpdated(title: NSString) {
         DataModel.updateData()
-        updateUI()
     }
     
     func connectProblem() {
-        currentShowLabel.text = ""
-        nowPlayingLabel.text = ""
-        albumArtImageView.image = UIImage(named: "insanity-icon.png")
         radioPaused()
         UIAlertView(title: "Cannot Stream Insanity", message: "There was a problem streaming Insanity Radio. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
     }

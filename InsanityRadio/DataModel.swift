@@ -47,17 +47,21 @@ class DataModel {
     }
     
     static func updateData() {
-        if let dataJSON = NSData(contentsOfURL: NSURL(string: "http://www.insanityradio.com/app.json")!) {
-            var error = NSError?()
-            let dataDict = NSJSONSerialization.JSONObjectWithData(dataJSON, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
+        let manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer = AFJSONResponseSerializer()
+        let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+            let nowPlaying = responseObject["nowPlaying"] as? [String: String]
+            let currentShow = responseObject["currentShow"] as? [String: String]
+            let schedule = responseObject["schedule"] as? [String: [[String: String]]]
             
-            let nowPlaying = dataDict["nowPlaying"] as! [String: String]
-            let currentShow = dataDict["currentShow"] as! [String: String]
-            let schedule = dataDict["schedule"] as! [String: [[String: String]]]
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(currentShow!), forKey: "currentShow")
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
             
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying), forKey: "nowPlaying")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(currentShow), forKey: "currentShow")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule), forKey: "schedule")
-        }
+            NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
+        }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            
+        })
+        requestOperation.start()
     }
 }
