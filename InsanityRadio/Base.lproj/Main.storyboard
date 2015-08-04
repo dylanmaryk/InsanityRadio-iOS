@@ -43,17 +43,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AF4-Um-RmH">
                                 <rect key="frame" x="0.0" y="501" width="600" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMF-Yb-3xE">
-                                        <rect key="frame" x="8" y="3" width="44" height="44"/>
-                                        <state key="normal" image="stop.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="stopButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="Vdq-Hi-bVr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1C-hw-5zK">
-                                        <rect key="frame" x="60" y="3" width="44" height="44"/>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1C-hw-5zK">
+                                        <rect key="frame" x="278" y="3" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="ZrB-kb-6hC"/>
+                                        </constraints>
                                         <state key="normal" image="play.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -63,6 +57,11 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="top" secondItem="AF4-Um-RmH" secondAttribute="top" constant="3" id="5Sn-2u-Fnj"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerY" secondItem="AF4-Um-RmH" secondAttribute="centerY" id="XLw-1g-2Fu"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerX" secondItem="AF4-Um-RmH" secondAttribute="centerX" id="ZS1-8h-fdM"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-EG-Pui">
                                 <rect key="frame" x="16" y="451" width="568" height="42"/>
@@ -111,7 +110,6 @@
                         <outlet property="currentShowLabel" destination="Gdh-7a-Lzx" id="ism-rY-q9h"/>
                         <outlet property="nowPlayingLabel" destination="Srw-EG-Pui" id="CWN-hF-TER"/>
                         <outlet property="playPauseButton" destination="I1C-hw-5zK" id="w2S-1t-Uc0"/>
-                        <outlet property="stopButton" destination="dMF-Yb-3xE" id="ed7-X5-EZ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -231,6 +229,5 @@
     <resources>
         <image name="insanity-icon.png" width="54" height="98"/>
         <image name="play.png" width="100" height="100"/>
-        <image name="stop.png" width="100" height="100"/>
     </resources>
 </document>

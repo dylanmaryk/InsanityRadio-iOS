@@ -12,7 +12,6 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var currentShowLabel: UILabel!
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
-    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var playPauseButton: UIButton!
     
     let radio = Radio()
@@ -90,13 +89,10 @@ class PlayerViewController: UIViewController {
         requestOperation.start()
     }
     
-    @IBAction func stopButtonTapped() {
-        radioStopped()
-        // Stop radio
-    }
-    
     @IBAction func playPauseButtonTapped() {
         if paused {
+            playPauseButton.enabled = false
+            playPauseButton.alpha = 0.5
             radio.updatePlay(true)
         } else {
             radioPaused()
@@ -104,21 +100,9 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    func radioStopped() {
-        paused = true
-        
-        stopButton.enabled = false
-        stopButton.alpha = 0.5
-        playPauseButton.enabled = true
-        playPauseButton.alpha = 1
-        playPauseButton.imageView?.image = UIImage(named: "play.png")
-    }
-    
     func radioPlayed() {
         paused = false
         
-        stopButton.enabled = true
-        stopButton.alpha = 1
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "pause.png")
@@ -127,8 +111,6 @@ class PlayerViewController: UIViewController {
     func radioPaused() {
         paused = true
         
-        stopButton.enabled = true
-        stopButton.alpha = 1
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "play.png")
@@ -143,7 +125,7 @@ class PlayerViewController: UIViewController {
         currentShowLabel.text = ""
         nowPlayingLabel.text = ""
         albumArtImageView.image = UIImage(named: "insanity-icon.png")
-        radioStopped()
+        radioPaused()
         UIAlertView(title: "Cannot Stream Insanity", message: "There was a problem streaming Insanity Radio. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
     }
 }
