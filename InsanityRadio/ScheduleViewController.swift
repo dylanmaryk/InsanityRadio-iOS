@@ -24,18 +24,17 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     func updateUI() {
         schedule = DataModel.getSchedule()
         
-        if schedule == nil {
-            scheduleTableView.hidden = true
-            UIAlertView(title: "Cannot Download Schedule", message: "There was a problem downloading the schedule. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
-        } else {
+        if schedule != nil {
             scheduleTableView.hidden = false
             scheduleTableView.reloadData()
+        } else {
+            scheduleTableView.hidden = true
+            UIAlertView(title: "Cannot Download Schedule", message: "There was a problem downloading the schedule. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
         }
         
-        let currentShowDay = DataModel.getCurrentShow().day
-        let sectionForCurrentShowDay = sectionForDay(currentShowDay)
-        
         if numberOfSectionsInTableView(scheduleTableView) > 0 {
+            let currentShowDay = DataModel.getCurrentShow().day
+            let sectionForCurrentShowDay = sectionForDay(currentShowDay)
             scheduleTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionForCurrentShowDay), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         }
     }
