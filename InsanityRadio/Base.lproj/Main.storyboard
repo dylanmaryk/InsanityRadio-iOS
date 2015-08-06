@@ -131,6 +131,7 @@
                         <outlet property="currentShowLabel" destination="Gdh-7a-Lzx" id="ism-rY-q9h"/>
                         <outlet property="nowPlayingLabel" destination="Srw-EG-Pui" id="CWN-hF-TER"/>
                         <outlet property="playPauseButton" destination="I1C-hw-5zK" id="w2S-1t-Uc0"/>
+                        <outlet property="shareBarButtonItem" destination="Mja-hq-nej" id="6hd-xB-blA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

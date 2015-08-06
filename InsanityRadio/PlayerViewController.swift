@@ -13,6 +13,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     
     let radio = Radio()
     let manager = AFHTTPRequestOperationManager()
@@ -123,6 +124,11 @@ class PlayerViewController: UIViewController {
     
     @IBAction func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [DataModel.getShareText()], applicationActivities: nil)
+        
+        if activityViewController.respondsToSelector(Selector("popoverPresentationController")) {
+            activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
+        }
+        
         self.presentViewController(activityViewController, animated: true, completion: nil)
     }
     
