@@ -19,6 +19,8 @@ class PlayerViewController: UIViewController {
     let radio = Radio()
     let manager = AFHTTPRequestOperationManager()
     var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
+    var nowPlayingArtist: String!
+    var nowPlayingSong: String!
     var paused: Bool = true
     
     override func viewDidLoad() {
@@ -43,11 +45,11 @@ class PlayerViewController: UIViewController {
         
         currentShowLabel.text = currentShowLabelText
         
-        let nowPlaying = DataModel.getNowPlaying()
-        nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
+        nowPlayingLabel.text = nowPlayingArtist + "\n" + nowPlayingSong
         
-        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
+        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlayingArtist + "&track=" + nowPlayingSong + "&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        println(url) // Temp
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET(url, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             self.updateImageWithResponse(responseObject)
@@ -99,20 +101,20 @@ class PlayerViewController: UIViewController {
         self.albumArtImageView.image = image
         
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-            var nowPlayingSong: String
-            var currentShowName: String
+            var title: String
+            var artist: String
             
             if paused {
-                nowPlayingSong = "Insanity Radio"
-                currentShowName = "103.2FM"
+                title = "Insanity Radio"
+                artist = "103.2FM"
             } else {
-                nowPlayingSong = DataModel.getNowPlaying().song
-                currentShowName = DataModel.getCurrentShow().name
+                title = nowPlayingSong
+                artist = DataModel.getCurrentShow().name
             }
             
             let songInfo = [
-                MPMediaItemPropertyTitle: nowPlayingSong,
-                MPMediaItemPropertyArtist: currentShowName,
+                MPMediaItemPropertyTitle: title,
+                MPMediaItemPropertyArtist: artist,
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
@@ -177,6 +179,13 @@ class PlayerViewController: UIViewController {
     
     func metaTitleUpdated(title: NSString) {
         DataModel.updateData()
+        var nowPlayingString = title as String!
+        nowPlayingString = nowPlayingString.stringByReplacingOccurrencesOfString("StreamTitle='", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        nowPlayingString = nowPlayingString.stringByReplacingOccurrencesOfString("';", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let nowPlaying = nowPlayingString.componentsSeparatedByString(" - ")
+        nowPlayingArtist = nowPlaying[0] as String
+        nowPlayingSong = nowPlaying[1] as String
+        updateUI()
     }
     
     func connectProblem() {

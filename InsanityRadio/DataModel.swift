@@ -9,19 +9,6 @@
 import Foundation
 
 class DataModel {
-    static func getNowPlaying() -> (song: String, artist: String) {
-        if let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData {
-            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
-            
-            let song = nowPlaying["song"]!
-            let artist = nowPlaying["artist"]!
-            
-            return (song, artist)
-        }
-        
-        return ("", "")
-    }
-    
     static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
         if let currentShowData = NSUserDefaults.standardUserDefaults().objectForKey("currentShow") as? NSData {
             let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData) as! [String: String]
@@ -60,12 +47,10 @@ class DataModel {
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-            let nowPlaying = responseObject["nowPlaying"] as? [String: String]
             let currentShow = responseObject["currentShow"] as? [String: String]
             let schedule = responseObject["schedule"] as? [String: [[String: String]]]
             let shareText =  responseObject["shareText"] as? String
             
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(currentShow!), forKey: "currentShow")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(shareText!), forKey: "shareText")
