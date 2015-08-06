@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Insanity Radio. All rights reserved.
 //
 
+import MediaPlayer
 import UIKit
 
 class PlayerViewController: UIViewController {
@@ -28,6 +29,8 @@ class PlayerViewController: UIViewController {
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
     
     func updateUI() {
@@ -75,7 +78,7 @@ class PlayerViewController: UIViewController {
     func updateImageWithURL(imageURL: String?) {
         manager.responseSerializer = AFImageResponseSerializer()
         let requestOperation = manager.GET(imageURL, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-            self.albumArtImageView.image = responseObject as? UIImage
+            self.displayFinalImage(responseObject as? UIImage)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             self.displayCurrentShowImage()
         })
@@ -85,22 +88,54 @@ class PlayerViewController: UIViewController {
     func displayCurrentShowImage() {
         manager.responseSerializer = AFImageResponseSerializer()
         let requestOperation = manager.GET(currentShow.imageURL, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-            self.albumArtImageView.image = responseObject as? UIImage
+            self.displayFinalImage(responseObject as? UIImage)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-            self.albumArtImageView.image = UIImage(named: "insanity-icon.png")
+            self.displayFinalImage(UIImage(named: "insanity-icon.png"))
         })
         requestOperation.start()
     }
     
+    func displayFinalImage(image: UIImage?) {
+        self.albumArtImageView.image = image
+        
+        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+            var nowPlayingSong: String
+            var currentShowName: String
+            
+            if paused {
+                nowPlayingSong = "Insanity Radio"
+                currentShowName = "103.2FM"
+            } else {
+                nowPlayingSong = DataModel.getNowPlaying().song
+                currentShowName = DataModel.getCurrentShow().name
+            }
+            
+            let songInfo = [
+                MPMediaItemPropertyTitle: nowPlayingSong,
+                MPMediaItemPropertyArtist: currentShowName,
+                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
+            ]
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        }
+    }
+    
     @IBAction func playPauseButtonTapped() {
         if paused {
-            playPauseButton.enabled = false
-            playPauseButton.alpha = 0.5
-            radio.updatePlay(true)
+            playRadio()
         } else {
-            radioPaused()
-            radio.updatePlay(false)
+            pauseRadio()
         }
+    }
+    
+    func playRadio() {
+        playPauseButton.enabled = false
+        playPauseButton.alpha = 0.5
+        radio.updatePlay(true)
+    }
+    
+    func pauseRadio() {
+        radioPaused()
+        radio.updatePlay(false)
     }
     
     func radioPlayed() {
@@ -119,7 +154,7 @@ class PlayerViewController: UIViewController {
         playPauseButton.imageView?.image = UIImage(named: "play.png")
         currentShowLabel.text = ""
         nowPlayingLabel.text = ""
-        albumArtImageView.image = UIImage(named: "insanity-icon.png")
+        displayFinalImage(UIImage(named: "insanity-icon.png"))
     }
     
     @IBAction func shareButtonTapped() {
@@ -130,6 +165,14 @@ class PlayerViewController: UIViewController {
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent) {
+        if event.subtype == UIEventSubtype.RemoteControlPlay {
+            playRadio()
+        } else if event.subtype == UIEventSubtype.RemoteControlPause {
+            pauseRadio()
+        }
     }
     
     func metaTitleUpdated(title: NSString) {
