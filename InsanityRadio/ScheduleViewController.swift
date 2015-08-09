@@ -11,7 +11,7 @@ import UIKit
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var scheduleTableView: UITableView!
     
-    var schedule: [String: [[String: String]]]?
+    var schedule: [String: [[String: AnyObject]]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +77,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let linkURL = showForIndexPath(indexPath)["linkURL"]!
-        UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
+        if let linkURL = showForIndexPath(indexPath)["linkURL"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
+        }
     }
     
     func sectionForDay(day: String) -> Int {
@@ -123,7 +124,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func showForIndexPath(indexPath: NSIndexPath) -> [String: String] {
+    func showForIndexPath(indexPath: NSIndexPath) -> [String: AnyObject] {
         return schedule![dayForSection(indexPath.section)]![indexPath.row]
     }
 }

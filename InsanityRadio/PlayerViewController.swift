@@ -31,6 +31,8 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
         
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        
+        NSTimeZone.setDefaultTimeZone(NSTimeZone(name: "Europe/London")!)
     }
     
     func updateUI() {
@@ -48,6 +50,7 @@ class PlayerViewController: UIViewController {
         
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        println(url) // Temp
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET(url, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             self.updateImageWithResponse(responseObject)

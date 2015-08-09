@@ -23,24 +23,36 @@ class DataModel {
     }
     
     static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
-        if let currentShowData = NSUserDefaults.standardUserDefaults().objectForKey("currentShow") as? NSData {
-            let currentShow = NSKeyedUnarchiver.unarchiveObjectWithData(currentShowData) as! [String: String]
+        if let schedule = getSchedule() {
+            let calendar = NSCalendar.currentCalendar()
+            let currentTimeComponents = calendar.components((.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+            let showTimeComponents = NSDateComponents()
+            showTimeComponents.second = currentTimeComponents.second
+            showTimeComponents.minute = currentTimeComponents.minute
+            showTimeComponents.hour = currentTimeComponents.hour
+            showTimeComponents.day = 1
+            showTimeComponents.month = 8
+            showTimeComponents.year = 1982
+            let showTimeEpoch = calendar.dateFromComponents(showTimeComponents)?.timeIntervalSince1970
+            let showTimeEpochInt = Int(showTimeEpoch!)
             
-            let day = currentShow["dayOfTheWeek"]!
-            let name = currentShow["showName"]!
-            let presenters = currentShow["showPresenters"]!
-            let link = currentShow["linkURL"]!
-            let imageURL = currentShow["imageURL"]!
-            
-            return (day, name, presenters, link, imageURL)
+            // Optimise to only iterate through shows in current day, need to get day based on date
+            for (dayKey, dayValue) in schedule {
+                for show in dayValue {
+                    if let startTime = show["startTime"] as? Int where startTime < showTimeEpochInt,
+                        let endTime = show["endTime"] as? Int where endTime > showTimeEpochInt {
+                        return (dayKey, show["showName"] as! String, show["showPresenters"] as! String, show["linkURL"] as! String, show["imageURL"] as! String)
+                    }
+                }
+            }
         }
         
         return ("", "", "", "", "")
     }
     
-    static func getSchedule() -> [String: [[String: String]]]? {
+    static func getSchedule() -> [String: [[String: AnyObject]]]? {
         if let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData) as? [String: [[String: String]]]
+            return NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData) as? [String: [[String: AnyObject]]]
         }
         
         return nil
@@ -61,12 +73,10 @@ class DataModel {
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             let nowPlaying = responseObject["nowPlaying"] as? [String: String]
-            let currentShow = responseObject["currentShow"] as? [String: String]
-            let schedule = responseObject["schedule"] as? [String: [[String: String]]]
+            let schedule = responseObject["schedule"] as? [String: [[String: AnyObject]]]
             let shareText =  responseObject["shareText"] as? String
             
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(currentShow!), forKey: "currentShow")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(shareText!), forKey: "shareText")
             
