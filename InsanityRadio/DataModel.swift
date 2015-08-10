@@ -25,14 +25,14 @@ class DataModel {
     static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
         if let schedule = getSchedule() {
             let calendar = NSCalendar.currentCalendar()
-            let currentTimeComponents = calendar.components((.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+            let currentTimeComponents = calendar.components((.CalendarUnitWeekday | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
             let showTimeComponents = NSDateComponents()
-            showTimeComponents.second = currentTimeComponents.second
-            showTimeComponents.minute = currentTimeComponents.minute
-            showTimeComponents.hour = currentTimeComponents.hour
-            showTimeComponents.day = 1
-            showTimeComponents.month = 8
             showTimeComponents.year = 1982
+            showTimeComponents.month = 8
+            showTimeComponents.day = currentTimeComponents.weekday
+            showTimeComponents.hour = currentTimeComponents.hour
+            showTimeComponents.minute = currentTimeComponents.minute
+            showTimeComponents.second = currentTimeComponents.second
             let showTimeEpoch = calendar.dateFromComponents(showTimeComponents)?.timeIntervalSince1970
             let showTimeEpochInt = Int(showTimeEpoch!)
             
