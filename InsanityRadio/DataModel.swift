@@ -9,19 +9,6 @@
 import Foundation
 
 class DataModel {
-    static func getNowPlaying() -> (song: String, artist: String) {
-        if let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData {
-            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
-            
-            let song = nowPlaying["song"]!
-            let artist = nowPlaying["artist"]!
-            
-            return (song, artist)
-        }
-        
-        return ("", "")
-    }
-    
     static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
         if let schedule = getSchedule() {
             let calendar = NSCalendar.currentCalendar()
@@ -36,18 +23,57 @@ class DataModel {
             let showTimeEpoch = calendar.dateFromComponents(showTimeComponents)?.timeIntervalSince1970
             let showTimeEpochInt = Int(showTimeEpoch!)
             
-            // Optimise to only iterate through shows in current day, need to get day based on date
-            for (dayKey, dayValue) in schedule {
-                for show in dayValue {
+            let dayString = getDayStringForDayInt(currentTimeComponents.weekday)
+            
+            if let day = schedule[dayString] {
+                for show in day {
                     if let startTime = show["startTime"] as? Int where startTime < showTimeEpochInt,
-                        let endTime = show["endTime"] as? Int where endTime > showTimeEpochInt {
-                        return (dayKey, show["showName"] as! String, show["showPresenters"] as! String, show["linkURL"] as! String, show["imageURL"] as! String)
+                        let endTime = show["endTime"] as? Int where endTime > showTimeEpochInt,
+                        let showName = show["showName"] as? String,
+                        showPresenters = show["showPresenters"] as? String,
+                        linkURL = show["linkURL"] as? String,
+                        imageURL = show["imageURL"] as? String {
+                        return (dayString, show["showName"] as! String, show["showPresenters"] as! String, show["linkURL"] as! String, show["imageURL"] as! String)
                     }
                 }
             }
         }
         
         return ("", "", "", "", "")
+    }
+    
+    static func getDayStringForDayInt(day: Int) -> String {
+        switch day {
+            case 1:
+                return "sunday"
+            case 2:
+                return "monday"
+            case 3:
+                return "tuesday"
+            case 4:
+                return "wednesday"
+            case 5:
+                return "thursday"
+            case 6:
+                return "friday"
+            case 7:
+                return "saturday"
+            default:
+                return ""
+        }
+    }
+    
+    static func getNowPlaying() -> (song: String, artist: String) {
+        if let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData {
+            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
+            
+            let song = nowPlaying["song"]!
+            let artist = nowPlaying["artist"]!
+            
+            return (song, artist)
+        }
+        
+        return ("", "")
     }
     
     static func getSchedule() -> [String: [[String: AnyObject]]]? {
