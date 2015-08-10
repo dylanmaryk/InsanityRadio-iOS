@@ -27,7 +27,7 @@ class DataModel {
             
             if let day = schedule[dayString] {
                 for show in day {
-                    if let startTime = show["startTime"] as? Int where startTime < showTimeEpochInt,
+                    if let startTime = show["startTime"] as? Int where startTime <= showTimeEpochInt + 1,
                         let endTime = show["endTime"] as? Int where endTime > showTimeEpochInt,
                         let showName = show["showName"] as? String,
                         showPresenters = show["showPresenters"] as? String,

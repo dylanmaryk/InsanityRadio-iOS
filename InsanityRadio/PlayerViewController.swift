@@ -19,6 +19,7 @@ class PlayerViewController: UIViewController {
     let radio = Radio()
     let manager = AFHTTPRequestOperationManager()
     var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
+    var nowPlaying: (song: String, artist: String)!
     var paused: Bool = true
     
     override func viewDidLoad() {
@@ -33,19 +34,19 @@ class PlayerViewController: UIViewController {
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         NSTimeZone.setDefaultTimeZone(NSTimeZone(name: "Europe/London")!)
+        
+        // Test if timer retained in background until app terminated by system
+        let components = NSCalendar.currentCalendar().components((.CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+        let secondsUntilNextHour = NSTimeInterval(3600 - (components.minute * 60) - components.second)
+        NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: Selector("startCurrentShowTimer"), userInfo: nil, repeats: false)
+        
+        updateCurrentShow()
     }
     
     func updateUI() {
-        currentShow = DataModel.getCurrentShow()
-        var currentShowLabelText = currentShow.name
+        updateCurrentShow()
         
-        if currentShow.presenters != "" {
-            currentShowLabelText += "\nwith " + currentShow.presenters
-        }
-        
-        currentShowLabel.text = currentShowLabelText
-        
-        let nowPlaying = DataModel.getNowPlaying()
+        nowPlaying = DataModel.getNowPlaying()
         nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
         
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
@@ -60,6 +61,17 @@ class PlayerViewController: UIViewController {
         requestOperation.start()
         
         radioPlayed()
+    }
+    
+    func updateCurrentShow() {
+        currentShow = DataModel.getCurrentShow()
+        var currentShowLabelText = currentShow.name
+        
+        if currentShow.presenters != "" {
+            currentShowLabelText += "\nwith " + currentShow.presenters
+        }
+        
+        currentShowLabel.text = currentShowLabelText
     }
     
     func updateImageWithResponse(responseObject: AnyObject) {
@@ -107,10 +119,14 @@ class PlayerViewController: UIViewController {
             
             if paused {
                 nowPlayingSong = "Insanity Radio"
+            } else {
+                nowPlayingSong = nowPlaying.song
+            }
+            
+            if currentShow == nil {
                 currentShowName = "103.2FM"
             } else {
-                nowPlayingSong = DataModel.getNowPlaying().song
-                currentShowName = DataModel.getCurrentShow().name
+                currentShowName = currentShow.name
             }
             
             let songInfo = [
@@ -155,7 +171,6 @@ class PlayerViewController: UIViewController {
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "play.png")
-        currentShowLabel.text = ""
         nowPlayingLabel.text = ""
         displayFinalImage(UIImage(named: "insanity-icon.png"))
     }
@@ -168,6 +183,11 @@ class PlayerViewController: UIViewController {
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    func startCurrentShowTimer() {
+        NSTimer.scheduledTimerWithTimeInterval(3600, target: self, selector: Selector("updateCurrentShow"), userInfo: nil, repeats: true)
+        updateCurrentShow()
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent) {
