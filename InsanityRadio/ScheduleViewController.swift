@@ -16,9 +16,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        
+        scheduleTableView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController!.tabBar.frame.size.height, 0);
+        scheduleTableView.scrollIndicatorInsets = scheduleTableView.contentInset
+        
+        updateUI()
     }
     
     func updateUI() {
@@ -53,10 +56,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return schedule![dayForSection(section)]!.count
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 54
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
