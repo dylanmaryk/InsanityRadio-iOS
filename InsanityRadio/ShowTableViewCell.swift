@@ -15,7 +15,9 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showPresentersLabel: UILabel!
     
     func setupCell(show: [String: AnyObject]) {
-        self.layoutMargins = UIEdgeInsetsZero
+        if self.respondsToSelector(Selector("layoutMargins")) {
+            self.layoutMargins = UIEdgeInsetsZero
+        }
         
         if let showType = show["showType"] as? String {
             showTypeView.backgroundColor = colorForShowType(showType)
