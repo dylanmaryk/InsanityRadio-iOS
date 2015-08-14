@@ -203,8 +203,8 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
 }
 
 - (void)setPinnedCertificates:(NSArray *)pinnedCertificates {
-    _pinnedCertificates = [[NSOrderedSet orderedSetWithArray:pinnedCertificates] array];
-    
+    _pinnedCertificates = pinnedCertificates;
+
     if (self.pinnedCertificates) {
         NSMutableArray *mutablePinnedPublicKeys = [NSMutableArray arrayWithCapacity:[self.pinnedCertificates count]];
         for (NSData *certificate in self.pinnedCertificates) {
