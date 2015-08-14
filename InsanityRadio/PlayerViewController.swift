@@ -10,6 +10,7 @@ import MediaPlayer
 import UIKit
 
 class PlayerViewController: UIViewController {
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var currentShowLabel: UILabel!
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
@@ -39,6 +40,19 @@ class PlayerViewController: UIViewController {
         let components = NSCalendar.currentCalendar().components((.CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
         let secondsUntilNextHour = NSTimeInterval(3600 - (components.minute * 60) - components.second)
         NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: Selector("startCurrentShowTimer"), userInfo: nil, repeats: false)
+        
+        let titleViewImageView = UIImageView(frame: CGRectMake(0, 0, 35, 35))
+        titleViewImageView.image = UIImage(named: "headphone")
+        let titleViewLabel = UILabel()
+        titleViewLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        titleViewLabel.textColor = UIColor.whiteColor()
+        titleViewLabel.text = "Insanity Radio"
+        let titleViewLabelSize = titleViewLabel.sizeThatFits(CGSizeMake(CGFloat.max, titleViewImageView.frame.size.height))
+        titleViewLabel.frame = CGRectMake(titleViewImageView.frame.size.width + 10, 0, titleViewLabelSize.width, titleViewImageView.frame.size.height)
+        let titleView = UIView(frame: CGRectMake(0, 0, titleViewLabel.frame.origin.x + titleViewLabel.frame.size.width, titleViewLabel.frame.size.height))
+        titleView.addSubview(titleViewImageView)
+        titleView.addSubview(titleViewLabel)
+        navItem.titleView = titleView
         
         updateCurrentShow()
     }
