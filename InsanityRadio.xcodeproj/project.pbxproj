@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC42CFC21B716E4B003A3251 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC11B716E4B003A3251 /* play.png */; };
-		FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC31B716EC1003A3251 /* share-filled.png */; };
-		FC42CFC61B717204003A3251 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC51B717204003A3251 /* share.png */; };
 		FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */; };
 		FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFD01B718425003A3251 /* AVFoundation.framework */; };
-		FC42CFD31B7185B4003A3251 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFD21B7185B4003A3251 /* stop.png */; };
-		FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */; };
+		FC5B3DFB1B7E15BF004D258E /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3DF71B7E15BF004D258E /* insanity-icon.png */; };
+		FC5B3DFC1B7E15BF004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3DF81B7E15BF004D258E /* play.png */; };
+		FC5B3DFD1B7E15BF004D258E /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3DF91B7E15BF004D258E /* share.png */; };
+		FC5B3DFE1B7E15BF004D258E /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3DFA1B7E15BF004D258E /* stop.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
@@ -49,13 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC42CFC11B716E4B003A3251 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
-		FC42CFC31B716EC1003A3251 /* share-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-filled.png"; sourceTree = "<group>"; };
-		FC42CFC51B717204003A3251 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FC42CFD01B718425003A3251 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FC42CFD21B7185B4003A3251 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insanity-icon.png"; sourceTree = "<group>"; };
+		FC5B3DF71B7E15BF004D258E /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "Images/insanity-icon.png"; sourceTree = "<group>"; };
+		FC5B3DF81B7E15BF004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
+		FC5B3DF91B7E15BF004D258E /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share.png; path = Images/share.png; sourceTree = "<group>"; };
+		FC5B3DFA1B7E15BF004D258E /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Images/stop.png; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -130,11 +128,10 @@
 		FC5EA4171B6CFFBB0064AF60 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */,
-				FC42CFC11B716E4B003A3251 /* play.png */,
-				FC42CFC51B717204003A3251 /* share.png */,
-				FC42CFC31B716EC1003A3251 /* share-filled.png */,
-				FC42CFD21B7185B4003A3251 /* stop.png */,
+				FC5B3DF71B7E15BF004D258E /* insanity-icon.png */,
+				FC5B3DF81B7E15BF004D258E /* play.png */,
+				FC5B3DF91B7E15BF004D258E /* share.png */,
+				FC5B3DFA1B7E15BF004D258E /* stop.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -329,15 +326,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */,
-				FC42CFC21B716E4B003A3251 /* play.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
-				FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */,
-				FC42CFC61B717204003A3251 /* share.png in Resources */,
-				FC42CFD31B7185B4003A3251 /* stop.png in Resources */,
+				FC5B3DFE1B7E15BF004D258E /* stop.png in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
+				FC5B3DFD1B7E15BF004D258E /* share.png in Resources */,
+				FC5B3DFB1B7E15BF004D258E /* insanity-icon.png in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,
+				FC5B3DFC1B7E15BF004D258E /* play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
