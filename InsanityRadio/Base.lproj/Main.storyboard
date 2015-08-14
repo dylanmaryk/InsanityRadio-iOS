@@ -30,6 +30,18 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Insanity Radio" id="TNu-m5-gyG">
+                                        <barButtonItem key="leftBarButtonItem" id="I4F-bO-g4w">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k7i-7R-ga0">
+                                                <rect key="frame" x="16" y="-28" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="comment.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="commentButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="as7-aQ-xLd"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" id="Mja-hq-nej">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xwx-eb-6nd">
                                                 <rect key="frame" x="562" y="12" width="22" height="22"/>
@@ -282,6 +294,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="comment.png" width="100" height="100"/>
         <image name="insanity-icon.png" width="54" height="98"/>
         <image name="play.png" width="100" height="100"/>
         <image name="share.png" width="100" height="100"/>

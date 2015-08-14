@@ -175,6 +175,11 @@ class PlayerViewController: UIViewController {
         displayFinalImage(UIImage(named: "insanity-icon.png"))
     }
     
+    @IBAction func commentButtonTapped() {
+        let entity = SocializeEntity(key: "insanityradio")
+        SZCommentUtils.showCommentsListWithViewController(self, entity: entity, completion: nil)
+    }
+    
     @IBAction func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [DataModel.getShareText()], applicationActivities: nil)
         
