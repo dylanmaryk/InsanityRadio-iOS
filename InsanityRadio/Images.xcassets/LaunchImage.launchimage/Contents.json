@@ -29,14 +29,16 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Launch Image - iPhone 4s.png",
       "scale" : "2x"
     },
     {
-      "orientation" : "portrait",
+      "extent" : "full-screen",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
       "subtype" : "retina4",
+      "filename" : "Launch Image - iPhone 5s.png",
+      "minimum-system-version" : "7.0",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
@@ -44,6 +46,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Launch Image - iPad2_iPad Mini Portrait.png",
       "scale" : "1x"
     },
     {
@@ -51,6 +54,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Launch Image - iPad2_iPad Mini Landscape.png",
       "scale" : "1x"
     },
     {
@@ -58,6 +62,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Launch Image - iPad_iPad Mini Portrait.png",
       "scale" : "2x"
     },
     {
@@ -65,6 +70,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Launch Image - iPad_iPad Mini Landscape.png",
       "scale" : "2x"
     },
     {

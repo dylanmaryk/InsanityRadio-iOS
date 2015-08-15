@@ -13,6 +13,7 @@
 		FC5B3DFB1B7E15BF004D258E /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3DF71B7E15BF004D258E /* insanity-icon.png */; };
 		FC5B3E0B1B7E661E004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E091B7E661E004D258E /* play.png */; };
 		FC5B3E0C1B7E661E004D258E /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0A1B7E661E004D258E /* stop.png */; };
+		FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0D1B7F71E3004D258E /* launchimage.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
@@ -47,6 +48,7 @@
 		FC5B3DF71B7E15BF004D258E /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "Images/insanity-icon.png"; sourceTree = "<group>"; };
 		FC5B3E091B7E661E004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
 		FC5B3E0A1B7E661E004D258E /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Images/stop.png; sourceTree = "<group>"; };
+		FC5B3E0D1B7F71E3004D258E /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = Images/launchimage.png; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				FC5B3DF71B7E15BF004D258E /* insanity-icon.png */,
+				FC5B3E0D1B7F71E3004D258E /* launchimage.png */,
 				FC5B3E091B7E661E004D258E /* play.png */,
 				FC5B3E0A1B7E661E004D258E /* stop.png */,
 			);
@@ -286,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
