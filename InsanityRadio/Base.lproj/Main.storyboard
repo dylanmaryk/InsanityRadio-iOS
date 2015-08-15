@@ -141,6 +141,7 @@
                     <tabBarItem key="tabBarItem" title="Now Playing" image="nowplaying" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="albumArtImageView" destination="RdU-MC-GTQ" id="7GX-mz-j7L"/>
+                        <outlet property="commentButton" destination="k7i-7R-ga0" id="dsZ-nc-3wc"/>
                         <outlet property="currentShowLabel" destination="Gdh-7a-Lzx" id="ism-rY-q9h"/>
                         <outlet property="navItem" destination="TNu-m5-gyG" id="gG5-rd-fov"/>
                         <outlet property="nowPlayingLabel" destination="Srw-EG-Pui" id="CWN-hF-TER"/>

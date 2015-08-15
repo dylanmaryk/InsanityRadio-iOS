@@ -11,11 +11,12 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var currentShowLabel: UILabel!
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     
     let radio = Radio()
     let manager = AFHTTPRequestOperationManager()
@@ -54,10 +55,14 @@ class PlayerViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         navItem.titleView = titleView
         
+        enableDisableComment()
+        
         updateCurrentShow()
     }
     
     func updateUI() {
+        enableDisableComment()
+        
         updateCurrentShow()
         
         nowPlaying = DataModel.getNowPlaying()
@@ -75,6 +80,14 @@ class PlayerViewController: UIViewController {
         requestOperation.start()
         
         radioPlayed()
+    }
+    
+    func enableDisableComment() {
+        if DataModel.getEnableComment() {
+            commentButton.hidden = false
+        } else {
+            commentButton.hidden = true
+        }
     }
     
     func updateCurrentShow() {

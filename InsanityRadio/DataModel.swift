@@ -93,6 +93,15 @@ class DataModel {
         return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
     }
     
+    static func getEnableComment() -> Bool {
+        if let enableCommentData = NSUserDefaults.standardUserDefaults().objectForKey("enableComment") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(enableCommentData) as! Bool
+        }
+        
+        // Determine final default value before release
+        return true
+    }
+    
     static func updateData() {
         let manager = AFHTTPRequestOperationManager()
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
@@ -101,10 +110,12 @@ class DataModel {
             let nowPlaying = responseObject["nowPlaying"] as? [String: String]
             let schedule = responseObject["schedule"] as? [String: [[String: AnyObject]]]
             let shareText =  responseObject["shareText"] as? String
+            let enableComment =  responseObject["enableComment"] as? Bool
             
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
             NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(shareText!), forKey: "shareText")
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(enableComment!), forKey: "enableComment")
             
             NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
