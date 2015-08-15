@@ -63,7 +63,7 @@ class PlayerViewController: UIViewController {
         nowPlaying = DataModel.getNowPlaying()
         nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
         
-        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
+        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=38ca8452a5704df8ba7e7de9855844e7&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         println(url) // Temp
         manager.responseSerializer = AFJSONResponseSerializer()
