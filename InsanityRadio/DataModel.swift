@@ -33,7 +33,7 @@ class DataModel {
                         showPresenters = show["showPresenters"] as? String,
                         linkURL = show["linkURL"] as? String,
                         imageURL = show["imageURL"] as? String {
-                        return (dayString, show["showName"] as! String, show["showPresenters"] as! String, show["linkURL"] as! String, show["imageURL"] as! String)
+                        return (dayString, showName, showPresenters, linkURL, imageURL)
                     }
                 }
             }
@@ -93,6 +93,15 @@ class DataModel {
         return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
     }
     
+    static func getShareTextTwitter() -> String {
+        if let shareTextTwitterData = NSUserDefaults.standardUserDefaults().objectForKey("shareTextTwitter") as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextTwitterData) as! String
+        }
+        
+        // Determine final default text before release
+        return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+    }
+    
     static func getEnableComment() -> Bool {
         if let enableCommentData = NSUserDefaults.standardUserDefaults().objectForKey("enableComment") as? NSData {
             return NSKeyedUnarchiver.unarchiveObjectWithData(enableCommentData) as! Bool
@@ -107,20 +116,34 @@ class DataModel {
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-            let nowPlaying = responseObject["nowPlaying"] as? [String: String]
-            let schedule = responseObject["schedule"] as? [String: [[String: AnyObject]]]
-            let shareText =  responseObject["shareText"] as? String
-            let enableComment =  responseObject["enableComment"] as? Bool
+            if let nowPlaying = responseObject["nowPlaying"] as? [String: String] {
+                self.setUserDefaultsObjectArchived(nowPlaying, forKey: "nowPlaying")
+            }
             
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(nowPlaying!), forKey: "nowPlaying")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(schedule!), forKey: "schedule")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(shareText!), forKey: "shareText")
-            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(enableComment!), forKey: "enableComment")
+            if let schedule = responseObject["schedule"] as? [String: [[String: AnyObject]]] {
+                self.setUserDefaultsObjectArchived(schedule, forKey: "schedule")
+            }
+            
+            if let shareText = responseObject["shareText"] as? String {
+               self.setUserDefaultsObjectArchived(shareText, forKey: "shareText")
+            }
+            
+            if let shareTextTwitter = responseObject["shareTextTwitter"] as? String {
+                self.setUserDefaultsObjectArchived(shareTextTwitter, forKey: "shareTextTwitter")
+            }
+            
+            if let enableComment = responseObject["enableComment"] as? Bool {
+                self.setUserDefaultsObjectArchived(enableComment, forKey: "enableComment")
+            }
             
             NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             
         })
         requestOperation.start()
+    }
+    
+    static func setUserDefaultsObjectArchived(object: AnyObject, forKey key: String) {
+        NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(object), forKey: key)
     }
 }

@@ -19,6 +19,7 @@
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
 		FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC8D8A311B1B8B04004E2065 /* LICENSE */; };
 		FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A331B1BA7B4004E2065 /* DataModel.swift */; };
+		FCADCA0B1B83C5F100E8A8B4 /* CustomActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */; };
 		FCAE7AD41B23C8B3005785AA /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */; };
 		FCB690521B1397A2005F83D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690511B1397A2005F83D7 /* AppDelegate.swift */; };
 		FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB690571B1397A2005F83D7 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		FC8D8A2B1B1B883E004E2065 /* Radio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radio.m; sourceTree = "<group>"; };
 		FC8D8A311B1B8B04004E2065 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC8D8A331B1BA7B4004E2065 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityItem.swift; sourceTree = "<group>"; };
 		FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTableViewCell.swift; sourceTree = "<group>"; };
 		FCAE7AF21B23E9FA005785AA /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		FCB6904C1B1397A2005F83D7 /* InsanityRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsanityRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 			children = (
 				FCB690511B1397A2005F83D7 /* AppDelegate.swift */,
 				FCB690731B139845005F83D7 /* PlayerViewController.swift */,
+				FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */,
 				FCB690751B139854005F83D7 /* ScheduleViewController.swift */,
 				FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */,
 				FC8D8A331B1BA7B4004E2065 /* DataModel.swift */,
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCADCA0B1B83C5F100E8A8B4 /* CustomActivityItem.swift in Sources */,
 				FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */,
 				FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */,
 				FCB690761B139854005F83D7 /* ScheduleViewController.swift in Sources */,

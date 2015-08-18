@@ -208,7 +208,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func shareButtonTapped() {
-        let activityViewController = UIActivityViewController(activityItems: [DataModel.getShareText()], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
         
         if activityViewController.respondsToSelector(Selector("popoverPresentationController")) {
             activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
