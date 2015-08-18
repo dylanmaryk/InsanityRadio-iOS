@@ -12,6 +12,8 @@ class CustomActivityItem: NSObject, UIActivityItemSource {
     var shareText: String!
     
     override init() {
+        super.init()
+        
         shareText = DataModel.getShareText()
     }
     
