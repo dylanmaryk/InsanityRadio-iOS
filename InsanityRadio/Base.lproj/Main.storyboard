@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -73,10 +73,7 @@
                                 <rect key="frame" x="0.0" y="501" width="600" height="50"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1C-hw-5zK">
-                                        <rect key="frame" x="278" y="3" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="ZrB-kb-6hC"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <state key="normal" image="play.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -87,9 +84,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="top" secondItem="AF4-Um-RmH" secondAttribute="top" constant="3" id="5Sn-2u-Fnj"/>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerY" secondItem="AF4-Um-RmH" secondAttribute="centerY" id="XLw-1g-2Fu"/>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerX" secondItem="AF4-Um-RmH" secondAttribute="centerX" id="ZS1-8h-fdM"/>
+                                    <constraint firstAttribute="trailing" secondItem="I1C-hw-5zK" secondAttribute="trailing" id="0IW-JK-ofo"/>
+                                    <constraint firstAttribute="bottom" secondItem="I1C-hw-5zK" secondAttribute="bottom" id="R9R-f3-5WR"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="top" secondItem="AF4-Um-RmH" secondAttribute="top" id="Stc-VZ-Ly2"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="leading" secondItem="AF4-Um-RmH" secondAttribute="leading" id="eTG-Sn-4HD"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-EG-Pui">

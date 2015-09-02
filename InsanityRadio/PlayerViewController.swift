@@ -55,6 +55,8 @@ class PlayerViewController: UIViewController {
         titleView.addSubview(titleViewLabel)
         navItem.titleView = titleView
         
+        playPauseButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        
         enableDisableComment()
         
         updateCurrentShow()
