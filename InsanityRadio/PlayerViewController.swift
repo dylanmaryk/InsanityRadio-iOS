@@ -10,17 +10,18 @@ import MediaPlayer
 import UIKit
 
 class PlayerViewController: UIViewController {
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var currentShowLabel: UILabel!
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     
     let radio = Radio()
     let manager = AFHTTPRequestOperationManager()
     var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
-    var nowPlayingArtist: String!
-    var nowPlayingSong: String!
+    var nowPlaying: (song: String, artist: String)!
     var paused: Bool = true
     
     override func viewDidLoad() {
@@ -33,21 +34,43 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
         
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        
+        NSTimeZone.setDefaultTimeZone(NSTimeZone(name: "Europe/London")!)
+        
+        // Test if timer retained in background until app terminated by system
+        let components = NSCalendar.currentCalendar().components((.CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+        let secondsUntilNextHour = NSTimeInterval(3600 - (components.minute * 60) - components.second)
+        NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: Selector("startCurrentShowTimer"), userInfo: nil, repeats: false)
+        
+        let titleViewImageView = UIImageView(frame: CGRectMake(0, 0, 35, 35))
+        titleViewImageView.image = UIImage(named: "headphone")
+        let titleViewLabel = UILabel()
+        titleViewLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        titleViewLabel.textColor = UIColor.whiteColor()
+        titleViewLabel.text = "Insanity Radio"
+        let titleViewLabelSize = titleViewLabel.sizeThatFits(CGSizeMake(CGFloat.max, titleViewImageView.frame.size.height))
+        titleViewLabel.frame = CGRectMake(titleViewImageView.frame.size.width + 10, 0, titleViewLabelSize.width, titleViewImageView.frame.size.height)
+        let titleView = UIView(frame: CGRectMake(0, 0, titleViewLabel.frame.origin.x + titleViewLabel.frame.size.width, titleViewLabel.frame.size.height))
+        titleView.addSubview(titleViewImageView)
+        titleView.addSubview(titleViewLabel)
+        navItem.titleView = titleView
+        
+        playPauseButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        enableDisableComment()
+        
+        updateCurrentShow()
     }
     
     func updateUI() {
-        currentShow = DataModel.getCurrentShow()
-        var currentShowLabelText = currentShow.name
+        enableDisableComment()
         
-        if currentShow.presenters != "" {
-            currentShowLabelText += "\nwith " + currentShow.presenters
-        }
+        updateCurrentShow()
         
-        currentShowLabel.text = currentShowLabelText
+        nowPlaying = DataModel.getNowPlaying()
+        nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
         
-        nowPlayingLabel.text = nowPlayingArtist + "\n" + nowPlayingSong
-        
-        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=eedbd282e57a31428945d8030a9f3301&artist=" + nowPlayingArtist + "&track=" + nowPlayingSong + "&format=json"
+        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=38ca8452a5704df8ba7e7de9855844e7&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         println(url) // Temp
         manager.responseSerializer = AFJSONResponseSerializer()
@@ -61,17 +84,36 @@ class PlayerViewController: UIViewController {
         radioPlayed()
     }
     
+    func enableDisableComment() {
+        if DataModel.getEnableComment() {
+            commentButton.hidden = false
+        } else {
+            commentButton.hidden = true
+        }
+    }
+    
+    func updateCurrentShow() {
+        currentShow = DataModel.getCurrentShow()
+        var currentShowLabelText = currentShow.name
+        
+        if currentShow.presenters != "" {
+            currentShowLabelText += "\nwith " + currentShow.presenters
+        }
+        
+        currentShowLabel.text = currentShowLabelText
+    }
+    
     func updateImageWithResponse(responseObject: AnyObject) {
         if let track = responseObject["track"] as? [String: AnyObject],
             album = track["album"] as? [String: AnyObject],
             images = album["image"] as? [[String: String]] {
-            for image in images {
-                if image["size"] == "extralarge" {
-                    updateImageWithURL(image["#text"])
-                    
-                    return
+                for image in images {
+                    if image["size"] == "extralarge" {
+                        updateImageWithURL(image["#text"])
+                        
+                        return
+                    }
                 }
-            }
         }
         
         displayCurrentShowImage()
@@ -101,20 +143,24 @@ class PlayerViewController: UIViewController {
         self.albumArtImageView.image = image
         
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-            var title: String
-            var artist: String
+            var nowPlayingSong: String
+            var currentShowName: String
             
             if paused {
-                title = "Insanity Radio"
-                artist = "103.2FM"
+                nowPlayingSong = "Insanity Radio"
             } else {
-                title = nowPlayingSong
-                artist = DataModel.getCurrentShow().name
+                nowPlayingSong = nowPlaying.song
+            }
+            
+            if currentShow == nil {
+                currentShowName = "103.2FM"
+            } else {
+                currentShowName = currentShow.name
             }
             
             let songInfo = [
-                MPMediaItemPropertyTitle: title,
-                MPMediaItemPropertyArtist: artist,
+                MPMediaItemPropertyTitle: nowPlayingSong,
+                MPMediaItemPropertyArtist: currentShowName,
                 MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
@@ -154,19 +200,28 @@ class PlayerViewController: UIViewController {
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "play.png")
-        currentShowLabel.text = ""
         nowPlayingLabel.text = ""
         displayFinalImage(UIImage(named: "insanity-icon.png"))
     }
     
+    @IBAction func commentButtonTapped() {
+        let entity = SocializeEntity(key: "insanityradio")
+        SZCommentUtils.showCommentsListWithViewController(self, entity: entity, completion: nil)
+    }
+    
     @IBAction func shareButtonTapped() {
-        let activityViewController = UIActivityViewController(activityItems: [DataModel.getShareText()], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
         
         if activityViewController.respondsToSelector(Selector("popoverPresentationController")) {
             activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    func startCurrentShowTimer() {
+        NSTimer.scheduledTimerWithTimeInterval(3600, target: self, selector: Selector("updateCurrentShow"), userInfo: nil, repeats: true)
+        updateCurrentShow()
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent) {
@@ -179,13 +234,6 @@ class PlayerViewController: UIViewController {
     
     func metaTitleUpdated(title: NSString) {
         DataModel.updateData()
-        var nowPlayingString = title as String!
-        nowPlayingString = nowPlayingString.stringByReplacingOccurrencesOfString("StreamTitle='", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        nowPlayingString = nowPlayingString.stringByReplacingOccurrencesOfString("';", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        let nowPlaying = nowPlayingString.componentsSeparatedByString(" - ")
-        nowPlayingArtist = nowPlaying[0] as String
-        nowPlayingSong = nowPlaying[1] as String
-        updateUI()
     }
     
     func connectProblem() {

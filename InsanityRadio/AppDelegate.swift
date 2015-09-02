@@ -14,7 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        Socialize.storeLocationSharingDisabled(true)
+        Socialize.storeConsumerKey("1ad7074b-e1f3-4e90-8d2f-60633faabc11")
+        Socialize.storeConsumerSecret("7e05ee22-1fba-421a-b53a-e3b6d3e8f356")
+        
+        window?.backgroundColor = UIColor.whiteColor()
+        
         return true
     }
     

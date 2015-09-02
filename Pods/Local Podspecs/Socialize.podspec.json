@@ -1,0 +1,66 @@
+{
+  "name": "Socialize",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "version": "3.1.2",
+  "summary": "Socialize SDK for iOS devices.",
+  "description": "An iOS social sharing SDK for native apps. Learn more at http://getsocialize.com/",
+  "homepage": "https://github.com/socialize/socialize-sdk-ios",
+  "documentation_url": "http://socialize.github.io/socialize-sdk-ios/",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "David Jedeikin": "djedeikin@sharethis.com"
+  },
+  "source": {
+    "git": "https://github.com/socialize/socialize-sdk-ios.git",
+    "tag": "3.1.2"
+  },
+  "dependencies": {
+    "Loopy": [
+
+    ],
+    "Facebook-iOS-SDK": [
+      "3.20"
+    ],
+    "SZOAuthConsumer": [
+
+    ],
+    "SZJSONKit": [
+
+    ],
+    "BlocksKit": [
+
+    ],
+    "STTwitter": [
+
+    ]
+  },
+  "resources": [
+    "Socialize/Resources/*.png",
+    "Socialize/Resources/*.xib",
+    "Socialize/Resources/*.plist",
+    "Socialize/Resources/*.htm"
+  ],
+  "subspecs": [
+    {
+      "name": "no-arc",
+      "source_files": "Socialize-noarc/**/*.{h,m}",
+      "requires_arc": false,
+      "compiler_flags": "-fno-objc-arc"
+    },
+    {
+      "name": "arc",
+      "source_files": "Socialize/**/*.{h,m}",
+      "dependencies": {
+        "Socialize/no-arc": [
+
+        ]
+      },
+      "requires_arc": true
+    }
+  ]
+}

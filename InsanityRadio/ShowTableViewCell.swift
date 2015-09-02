@@ -14,13 +14,18 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var showPresentersLabel: UILabel!
     
-    func setupCell(show: [String: String]) {
-        self.layoutMargins = UIEdgeInsetsZero
+    func setupCell(show: [String: AnyObject]) {
+        if self.respondsToSelector(Selector("layoutMargins")) {
+            self.layoutMargins = UIEdgeInsetsZero
+        }
         
-        showTypeView.backgroundColor = colorForShowType(show["showType"]!)
-        showClockLabel.text = show["startClock"]
-        showNameLabel.text = show["showName"]
-        showPresentersLabel.text = show["showPresenters"]
+        if let showType = show["showType"] as? String {
+            showTypeView.backgroundColor = colorForShowType(showType)
+        }
+        
+        showClockLabel.text = show["startClock"] as? String
+        showNameLabel.text = show["showName"] as? String
+        showPresentersLabel.text = show["showPresenters"] as? String
     }
     
     func colorForShowType(showType: String) -> UIColor {

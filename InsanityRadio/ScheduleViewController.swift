@@ -11,14 +11,17 @@ import UIKit
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var scheduleTableView: UITableView!
     
-    var schedule: [String: [[String: String]]]?
+    var schedule: [String: [[String: AnyObject]]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        
+        scheduleTableView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController!.tabBar.frame.size.height, 0);
+        scheduleTableView.scrollIndicatorInsets = scheduleTableView.contentInset
+        
+        updateUI()
     }
     
     func updateUI() {
@@ -55,10 +58,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         return schedule![dayForSection(section)]!.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 54
-    }
-    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if cell.respondsToSelector("setSeparatorInset:") {
             cell.separatorInset = UIEdgeInsetsZero
@@ -77,8 +76,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let linkURL = showForIndexPath(indexPath)["linkURL"]!
-        UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
+        if let linkURL = showForIndexPath(indexPath)["linkURL"] as? String {
+            UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
+        }
     }
     
     func sectionForDay(day: String) -> Int {
@@ -123,7 +123,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func showForIndexPath(indexPath: NSIndexPath) -> [String: String] {
+    func showForIndexPath(indexPath: NSIndexPath) -> [String: AnyObject] {
         return schedule![dayForSection(indexPath.section)]![indexPath.row]
     }
 }

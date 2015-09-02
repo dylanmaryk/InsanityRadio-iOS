@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZe-3l-Td9">
@@ -30,6 +30,18 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Insanity Radio" id="TNu-m5-gyG">
+                                        <barButtonItem key="leftBarButtonItem" id="I4F-bO-g4w">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k7i-7R-ga0">
+                                                <rect key="frame" x="16" y="-28" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="comment">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="commentButtonTapped" destination="9pv-A4-QxB" eventType="touchUpInside" id="as7-aQ-xLd"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" id="Mja-hq-nej">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xwx-eb-6nd">
                                                 <rect key="frame" x="562" y="12" width="22" height="22"/>
@@ -61,10 +73,7 @@
                                 <rect key="frame" x="0.0" y="501" width="600" height="50"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1C-hw-5zK">
-                                        <rect key="frame" x="278" y="3" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="ZrB-kb-6hC"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <state key="normal" image="play.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -75,9 +84,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="top" secondItem="AF4-Um-RmH" secondAttribute="top" constant="3" id="5Sn-2u-Fnj"/>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerY" secondItem="AF4-Um-RmH" secondAttribute="centerY" id="XLw-1g-2Fu"/>
-                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="centerX" secondItem="AF4-Um-RmH" secondAttribute="centerX" id="ZS1-8h-fdM"/>
+                                    <constraint firstAttribute="trailing" secondItem="I1C-hw-5zK" secondAttribute="trailing" id="0IW-JK-ofo"/>
+                                    <constraint firstAttribute="bottom" secondItem="I1C-hw-5zK" secondAttribute="bottom" id="R9R-f3-5WR"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="top" secondItem="AF4-Um-RmH" secondAttribute="top" id="Stc-VZ-Ly2"/>
+                                    <constraint firstItem="I1C-hw-5zK" firstAttribute="leading" secondItem="AF4-Um-RmH" secondAttribute="leading" id="eTG-Sn-4HD"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-EG-Pui">
@@ -125,10 +135,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="acW-dT-cKf"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="nowplaying" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="albumArtImageView" destination="RdU-MC-GTQ" id="7GX-mz-j7L"/>
+                        <outlet property="commentButton" destination="k7i-7R-ga0" id="dsZ-nc-3wc"/>
                         <outlet property="currentShowLabel" destination="Gdh-7a-Lzx" id="ism-rY-q9h"/>
+                        <outlet property="navItem" destination="TNu-m5-gyG" id="gG5-rd-fov"/>
                         <outlet property="nowPlayingLabel" destination="Srw-EG-Pui" id="CWN-hF-TER"/>
                         <outlet property="playPauseButton" destination="I1C-hw-5zK" id="w2S-1t-Uc0"/>
                         <outlet property="shareBarButtonItem" destination="Mja-hq-nej" id="6hd-xB-blA"/>
@@ -165,7 +178,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="q2x-Yr-WtM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -245,14 +258,14 @@
                             <constraint firstItem="fTl-Rp-tAw" firstAttribute="leading" secondItem="57c-6b-6a6" secondAttribute="leading" id="Ht5-1i-P1y"/>
                             <constraint firstItem="q2x-Yr-WtM" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="LXA-ok-YWP"/>
                             <constraint firstAttribute="trailing" secondItem="q2x-Yr-WtM" secondAttribute="trailing" id="RqL-u6-9fb"/>
-                            <constraint firstAttribute="bottom" secondItem="q2x-Yr-WtM" secondAttribute="bottom" constant="49" id="bby-Hr-Kdp"/>
+                            <constraint firstAttribute="bottom" secondItem="q2x-Yr-WtM" secondAttribute="bottom" id="bby-Hr-Kdp"/>
                             <constraint firstItem="fTl-Rp-tAw" firstAttribute="bottom" secondItem="57c-6b-6a6" secondAttribute="top" id="j4t-L2-YzI"/>
                             <constraint firstItem="57c-6b-6a6" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="20" id="lRb-GJ-NR8"/>
                             <constraint firstItem="fTl-Rp-tAw" firstAttribute="trailing" secondItem="57c-6b-6a6" secondAttribute="trailing" id="rBY-cf-ym5"/>
                             <constraint firstItem="57c-6b-6a6" firstAttribute="leading" secondItem="q2x-Yr-WtM" secondAttribute="leading" id="x2i-aB-Pwz"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="schedule" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="scheduleTableView" destination="q2x-Yr-WtM" id="Svh-U2-srM"/>
                     </connections>
@@ -282,8 +295,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="insanity-icon.png" width="54" height="98"/>
+        <image name="comment" width="22" height="22"/>
+        <image name="insanity-icon.png" width="1024" height="1024"/>
+        <image name="nowplaying" width="25" height="25"/>
         <image name="play.png" width="100" height="100"/>
+        <image name="schedule" width="25" height="25"/>
         <image name="share.png" width="100" height="100"/>
     </resources>
 </document>

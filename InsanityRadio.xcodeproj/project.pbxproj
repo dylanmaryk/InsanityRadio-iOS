@@ -7,28 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC42CFC21B716E4B003A3251 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC11B716E4B003A3251 /* play.png */; };
-		FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC31B716EC1003A3251 /* share-filled.png */; };
-		FC42CFC61B717204003A3251 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFC51B717204003A3251 /* share.png */; };
+		B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DDBFBD7772416FC751AD39 /* libPods.a */; };
 		FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */; };
 		FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFD01B718425003A3251 /* AVFoundation.framework */; };
-		FC42CFD31B7185B4003A3251 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC42CFD21B7185B4003A3251 /* stop.png */; };
-		FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */; };
+		FC5B3E0B1B7E661E004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E091B7E661E004D258E /* play.png */; };
+		FC5B3E0C1B7E661E004D258E /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0A1B7E661E004D258E /* stop.png */; };
+		FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0D1B7F71E3004D258E /* launchimage.png */; };
+		FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
 		FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC8D8A311B1B8B04004E2065 /* LICENSE */; };
 		FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A331B1BA7B4004E2065 /* DataModel.swift */; };
+		FCADCA0B1B83C5F100E8A8B4 /* CustomActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */; };
 		FCAE7AD41B23C8B3005785AA /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */; };
-		FCAE7AE91B23E9A1005785AA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD71B23E9A1005785AA /* AFHTTPRequestOperation.m */; };
-		FCAE7AEA1B23E9A1005785AA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AD91B23E9A1005785AA /* AFHTTPRequestOperationManager.m */; };
-		FCAE7AEB1B23E9A1005785AA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7ADB1B23E9A1005785AA /* AFHTTPSessionManager.m */; };
-		FCAE7AEC1B23E9A1005785AA /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7ADE1B23E9A1005785AA /* AFNetworkReachabilityManager.m */; };
-		FCAE7AED1B23E9A1005785AA /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AE01B23E9A1005785AA /* AFSecurityPolicy.m */; };
-		FCAE7AEE1B23E9A1005785AA /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AE21B23E9A1005785AA /* AFURLConnectionOperation.m */; };
-		FCAE7AEF1B23E9A1005785AA /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AE41B23E9A1005785AA /* AFURLRequestSerialization.m */; };
-		FCAE7AF01B23E9A1005785AA /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AE61B23E9A1005785AA /* AFURLResponseSerialization.m */; };
-		FCAE7AF11B23E9A1005785AA /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAE7AE81B23E9A1005785AA /* AFURLSessionManager.m */; };
 		FCB690521B1397A2005F83D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690511B1397A2005F83D7 /* AppDelegate.swift */; };
 		FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB690571B1397A2005F83D7 /* Main.storyboard */; };
 		FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCB6905A1B1397A3005F83D7 /* Images.xcassets */; };
@@ -49,13 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC42CFC11B716E4B003A3251 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
-		FC42CFC31B716EC1003A3251 /* share-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-filled.png"; sourceTree = "<group>"; };
-		FC42CFC51B717204003A3251 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F8DDBFBD7772416FC751AD39 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FC42CFD01B718425003A3251 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FC42CFD21B7185B4003A3251 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "insanity-icon.png"; sourceTree = "<group>"; };
+		FC5B3E091B7E661E004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
+		FC5B3E0A1B7E661E004D258E /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Images/stop.png; sourceTree = "<group>"; };
+		FC5B3E0D1B7F71E3004D258E /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = Images/launchimage.png; sourceTree = "<group>"; };
+		FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "Images/insanity-icon.png"; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -64,26 +58,8 @@
 		FC8D8A2B1B1B883E004E2065 /* Radio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radio.m; sourceTree = "<group>"; };
 		FC8D8A311B1B8B04004E2065 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC8D8A331B1BA7B4004E2065 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityItem.swift; sourceTree = "<group>"; };
 		FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTableViewCell.swift; sourceTree = "<group>"; };
-		FCAE7AD61B23E9A1005785AA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		FCAE7AD71B23E9A1005785AA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		FCAE7AD81B23E9A1005785AA /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		FCAE7AD91B23E9A1005785AA /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		FCAE7ADA1B23E9A1005785AA /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		FCAE7ADB1B23E9A1005785AA /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		FCAE7ADC1B23E9A1005785AA /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		FCAE7ADD1B23E9A1005785AA /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		FCAE7ADE1B23E9A1005785AA /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		FCAE7ADF1B23E9A1005785AA /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		FCAE7AE01B23E9A1005785AA /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		FCAE7AE11B23E9A1005785AA /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		FCAE7AE21B23E9A1005785AA /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		FCAE7AE31B23E9A1005785AA /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		FCAE7AE41B23E9A1005785AA /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		FCAE7AE51B23E9A1005785AA /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		FCAE7AE61B23E9A1005785AA /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		FCAE7AE71B23E9A1005785AA /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		FCAE7AE81B23E9A1005785AA /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		FCAE7AF21B23E9FA005785AA /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		FCB6904C1B1397A2005F83D7 /* InsanityRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsanityRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB690501B1397A2005F83D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +81,7 @@
 			files = (
 				FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */,
 				FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */,
+				B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,11 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87489F78404B7CDD57444A93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */,
+				B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FC42CFC91B7181DF003A3251 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				FC42CFD01B718425003A3251 /* AVFoundation.framework */,
 				FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */,
+				F8DDBFBD7772416FC751AD39 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,11 +117,10 @@
 		FC5EA4171B6CFFBB0064AF60 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FC5EA4181B6CFFCC0064AF60 /* insanity-icon.png */,
-				FC42CFC11B716E4B003A3251 /* play.png */,
-				FC42CFC51B717204003A3251 /* share.png */,
-				FC42CFC31B716EC1003A3251 /* share-filled.png */,
-				FC42CFD21B7185B4003A3251 /* stop.png */,
+				FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */,
+				FC5B3E0D1B7F71E3004D258E /* launchimage.png */,
+				FC5B3E091B7E661E004D258E /* play.png */,
+				FC5B3E0A1B7E661E004D258E /* stop.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -153,32 +139,6 @@
 			path = Radio;
 			sourceTree = "<group>";
 		};
-		FCAE7AD51B23E9A1005785AA /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				FCAE7AD61B23E9A1005785AA /* AFHTTPRequestOperation.h */,
-				FCAE7AD71B23E9A1005785AA /* AFHTTPRequestOperation.m */,
-				FCAE7AD81B23E9A1005785AA /* AFHTTPRequestOperationManager.h */,
-				FCAE7AD91B23E9A1005785AA /* AFHTTPRequestOperationManager.m */,
-				FCAE7ADA1B23E9A1005785AA /* AFHTTPSessionManager.h */,
-				FCAE7ADB1B23E9A1005785AA /* AFHTTPSessionManager.m */,
-				FCAE7ADC1B23E9A1005785AA /* AFNetworking.h */,
-				FCAE7ADD1B23E9A1005785AA /* AFNetworkReachabilityManager.h */,
-				FCAE7ADE1B23E9A1005785AA /* AFNetworkReachabilityManager.m */,
-				FCAE7ADF1B23E9A1005785AA /* AFSecurityPolicy.h */,
-				FCAE7AE01B23E9A1005785AA /* AFSecurityPolicy.m */,
-				FCAE7AE11B23E9A1005785AA /* AFURLConnectionOperation.h */,
-				FCAE7AE21B23E9A1005785AA /* AFURLConnectionOperation.m */,
-				FCAE7AE31B23E9A1005785AA /* AFURLRequestSerialization.h */,
-				FCAE7AE41B23E9A1005785AA /* AFURLRequestSerialization.m */,
-				FCAE7AE51B23E9A1005785AA /* AFURLResponseSerialization.h */,
-				FCAE7AE61B23E9A1005785AA /* AFURLResponseSerialization.m */,
-				FCAE7AE71B23E9A1005785AA /* AFURLSessionManager.h */,
-				FCAE7AE81B23E9A1005785AA /* AFURLSessionManager.m */,
-			);
-			path = AFNetworking;
-			sourceTree = "<group>";
-		};
 		FCB690431B1397A2005F83D7 = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +146,9 @@
 				FCB690661B1397A3005F83D7 /* InsanityRadioTests */,
 				FC5EA4171B6CFFBB0064AF60 /* Images */,
 				FC8D8A251B1B883E004E2065 /* Radio */,
-				FCAE7AD51B23E9A1005785AA /* AFNetworking */,
 				FC42CFC91B7181DF003A3251 /* Frameworks */,
 				FCB6904D1B1397A2005F83D7 /* Products */,
+				87489F78404B7CDD57444A93 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +166,7 @@
 			children = (
 				FCB690511B1397A2005F83D7 /* AppDelegate.swift */,
 				FCB690731B139845005F83D7 /* PlayerViewController.swift */,
+				FCADCA0A1B83C5F100E8A8B4 /* CustomActivityItem.swift */,
 				FCB690751B139854005F83D7 /* ScheduleViewController.swift */,
 				FCAE7AD31B23C8B3005785AA /* ShowTableViewCell.swift */,
 				FC8D8A331B1BA7B4004E2065 /* DataModel.swift */,
@@ -250,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCB6906D1B1397A3005F83D7 /* Build configuration list for PBXNativeTarget "InsanityRadio" */;
 			buildPhases = (
+				7BEE396ED1B26E4570038690 /* Check Pods Manifest.lock */,
 				FCB690481B1397A2005F83D7 /* Sources */,
 				FCB690491B1397A2005F83D7 /* Frameworks */,
 				FCB6904A1B1397A2005F83D7 /* Resources */,
+				E1DBA92957007AB20B3EBB84 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,15 +292,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC42CFC41B716EC1003A3251 /* share-filled.png in Resources */,
-				FC42CFC21B716E4B003A3251 /* play.png in Resources */,
+				FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */,
+				FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
-				FC5EA4191B6CFFCC0064AF60 /* insanity-icon.png in Resources */,
-				FC42CFC61B717204003A3251 /* share.png in Resources */,
-				FC42CFD31B7185B4003A3251 /* stop.png in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
+				FC5B3E0C1B7E661E004D258E /* stop.png in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,
+				FC5B3E0B1B7E661E004D258E /* play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,27 +312,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7BEE396ED1B26E4570038690 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1DBA92957007AB20B3EBB84 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FCB690481B1397A2005F83D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCAE7AF11B23E9A1005785AA /* AFURLSessionManager.m in Sources */,
-				FCAE7AEE1B23E9A1005785AA /* AFURLConnectionOperation.m in Sources */,
-				FCAE7AE91B23E9A1005785AA /* AFHTTPRequestOperation.m in Sources */,
+				FCADCA0B1B83C5F100E8A8B4 /* CustomActivityItem.swift in Sources */,
 				FC8D8A341B1BA7B4004E2065 /* DataModel.swift in Sources */,
-				FCAE7AEA1B23E9A1005785AA /* AFHTTPRequestOperationManager.m in Sources */,
 				FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */,
 				FCB690761B139854005F83D7 /* ScheduleViewController.swift in Sources */,
-				FCAE7AEB1B23E9A1005785AA /* AFHTTPSessionManager.m in Sources */,
 				FCB690521B1397A2005F83D7 /* AppDelegate.swift in Sources */,
 				FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */,
 				FCB690741B139845005F83D7 /* PlayerViewController.swift in Sources */,
-				FCAE7AED1B23E9A1005785AA /* AFSecurityPolicy.m in Sources */,
 				FCAE7AD41B23C8B3005785AA /* ShowTableViewCell.swift in Sources */,
-				FCAE7AEF1B23E9A1005785AA /* AFURLRequestSerialization.m in Sources */,
-				FCAE7AEC1B23E9A1005785AA /* AFNetworkReachabilityManager.m in Sources */,
-				FCAE7AF01B23E9A1005785AA /* AFURLResponseSerialization.m in Sources */,
 				FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,10 +485,12 @@
 		};
 		FCB6906E1B1397A3005F83D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -513,10 +502,12 @@
 		};
 		FCB6906F1B1397A3005F83D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
