@@ -25,15 +25,34 @@ class DataModel {
             
             let dayString = getDayStringForDayInt(currentTimeComponents.weekday)
             
-            if let day = schedule[dayString] {
-                for show in day {
-                    if let startTime = show["startTime"] as? Int where startTime <= showTimeEpochInt + 1,
-                        let endTime = show["endTime"] as? Int where endTime > showTimeEpochInt,
-                        let showName = show["showName"] as? String,
-                        showPresenters = show["showPresenters"] as? String,
-                        linkURL = show["linkURL"] as? String,
-                        imageURL = show["imageURL"] as? String {
+            if var shows = schedule[dayString] {
+                // Add last show of previous day to shows, in case current show started before midnight
+                
+                var weekdayYesterdayInt = currentTimeComponents.weekday - 1
+                
+                if (weekdayYesterdayInt == 0) {
+                    weekdayYesterdayInt = 7
+                }
+                
+                let dayYesterdayString = getDayStringForDayInt(weekdayYesterdayInt)
+                
+                if let showsYesterday = schedule[dayYesterdayString] where !showsYesterday.isEmpty {
+                    shows.append(showsYesterday.last!)
+                }
+                
+                for show in shows {
+                    if let startTime = show["startTime"] as? Int,
+                        let endTime = show["endTime"] as? Int {
+                        // Note: Making assumption that if the last show of the week ends after the end of the week, it ends when the first show of the week begins
+                        let showEndsAfterEndOfWeek = endTime > 397609200
+                        
+                        if (startTime <= showTimeEpochInt + 1 && endTime > showTimeEpochInt) || showEndsAfterEndOfWeek,
+                            let showName = show["showName"] as? String,
+                            showPresenters = show["showPresenters"] as? String,
+                            linkURL = show["linkURL"] as? String,
+                            imageURL = show["imageURL"] as? String {
                             return (dayString, showName, showPresenters, linkURL, imageURL)
+                        }
                     }
                 }
             }
@@ -44,22 +63,22 @@ class DataModel {
     
     static func getDayStringForDayInt(day: Int) -> String {
         switch day {
-        case 1:
-            return "sunday"
-        case 2:
-            return "monday"
-        case 3:
-            return "tuesday"
-        case 4:
-            return "wednesday"
-        case 5:
-            return "thursday"
-        case 6:
-            return "friday"
-        case 7:
-            return "saturday"
-        default:
-            return ""
+            case 1:
+                return "sunday"
+            case 2:
+                return "monday"
+            case 3:
+                return "tuesday"
+            case 4:
+                return "wednesday"
+            case 5:
+                return "thursday"
+            case 6:
+                return "friday"
+            case 7:
+                return "saturday"
+            default:
+                return ""
         }
     }
     
