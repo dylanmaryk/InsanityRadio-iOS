@@ -22,6 +22,7 @@ class PlayerViewController: UIViewController {
     let manager = AFHTTPRequestOperationManager()
     var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
     var nowPlaying: (song: String, artist: String)!
+    var previousNowPlayingArtwork: UIImage?
     var paused: Bool = true
     
     override func viewDidLoad() {
@@ -82,6 +83,7 @@ class PlayerViewController: UIViewController {
         requestOperation.start()
         
         radioPlayed()
+        displayNowPlayingInfo(previousNowPlayingArtwork)
     }
     
     func enableDisableComment() {
@@ -151,6 +153,8 @@ class PlayerViewController: UIViewController {
     
     func displayNowPlayingInfo(image: UIImage?) {
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+            previousNowPlayingArtwork = image
+            
             var nowPlayingSong: String
             var currentShowName: String
             
