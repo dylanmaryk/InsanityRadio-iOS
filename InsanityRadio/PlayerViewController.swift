@@ -134,14 +134,22 @@ class PlayerViewController: UIViewController {
         let requestOperation = manager.GET(currentShow.imageURL, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-            self.displayFinalImage(UIImage(named: "insanity-icon.png"))
+            self.displayDefaultImage()
         })
         requestOperation.start()
     }
     
     func displayFinalImage(image: UIImage?) {
         self.albumArtImageView.image = image
-        
+        displayNowPlayingInfo(image);
+    }
+    
+    func displayDefaultImage() {
+        self.albumArtImageView.image = UIImage(named: "insanity-icon.png")
+        displayNowPlayingInfo(nil);
+    }
+    
+    func displayNowPlayingInfo(image: UIImage?) {
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
             var nowPlayingSong: String
             var currentShowName: String
@@ -158,11 +166,15 @@ class PlayerViewController: UIViewController {
                 currentShowName = currentShow.name
             }
             
-            let songInfo = [
+            var songInfo: [String: AnyObject] = [
                 MPMediaItemPropertyTitle: nowPlayingSong,
-                MPMediaItemPropertyArtist: currentShowName,
-                MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
+                MPMediaItemPropertyArtist: currentShowName
             ]
+            
+            if image != nil {
+                songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+            }
+            
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
         }
     }
@@ -201,7 +213,7 @@ class PlayerViewController: UIViewController {
         playPauseButton.alpha = 1
         playPauseButton.imageView?.image = UIImage(named: "play.png")
         nowPlayingLabel.text = ""
-        displayFinalImage(UIImage(named: "insanity-icon.png"))
+        displayDefaultImage()
     }
     
     @IBAction func commentButtonTapped() {
