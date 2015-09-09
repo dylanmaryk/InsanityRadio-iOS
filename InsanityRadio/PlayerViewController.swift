@@ -252,6 +252,14 @@ class PlayerViewController: UIViewController {
         DataModel.updateData()
     }
     
+    func interruptRadio() {
+        pauseRadio()
+    }
+    
+    func resumeInterruptedRadio() {
+        playRadio()
+    }
+    
     func connectProblem() {
         radioPaused()
         UIAlertView(title: "Cannot Stream Insanity", message: "There was a problem streaming Insanity Radio. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
