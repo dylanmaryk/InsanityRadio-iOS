@@ -73,7 +73,6 @@ class PlayerViewController: UIViewController {
         
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=38ca8452a5704df8ba7e7de9855844e7&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&autocorrect&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        println(url) // Temp
         manager.responseSerializer = AFJSONResponseSerializer()
         let requestOperation = manager.GET(url, parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
             self.updateImageWithResponse(responseObject)

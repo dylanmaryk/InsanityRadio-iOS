@@ -108,7 +108,6 @@ class DataModel {
             return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextData) as! String
         }
         
-        // Determine final default text before release
         return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
     }
     
@@ -117,7 +116,6 @@ class DataModel {
             return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextTwitterData) as! String
         }
         
-        // Determine final default text before release
         return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
     }
     
@@ -126,7 +124,6 @@ class DataModel {
             return NSKeyedUnarchiver.unarchiveObjectWithData(enableCommentData) as! Bool
         }
         
-        // Determine final default value before release
         return true
     }
     
