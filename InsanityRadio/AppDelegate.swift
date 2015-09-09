@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        TestFairy.begin("838720b1aca0d89f88e9731c98111170385e0bc9")
+        
         Socialize.storeLocationSharingDisabled(true)
         Socialize.storeConsumerKey("1ad7074b-e1f3-4e90-8d2f-60633faabc11")
         Socialize.storeConsumerSecret("7e05ee22-1fba-421a-b53a-e3b6d3e8f356")

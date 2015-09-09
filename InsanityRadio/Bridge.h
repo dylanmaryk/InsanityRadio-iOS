@@ -9,8 +9,9 @@
 #ifndef InsanityRadio_Bridge_h
 #define InsanityRadio_Bridge_h
 
-#import "Radio.h"
 #import "AFNetworking.h"
+#import "Radio.h"
 #import "Socialize.h"
+#import "TestFairy.h"
 
 #endif

@@ -28,6 +28,12 @@
 		FCB6906A1B1397A3005F83D7 /* InsanityRadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690691B1397A3005F83D7 /* InsanityRadioTests.swift */; };
 		FCB690741B139845005F83D7 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690731B139845005F83D7 /* PlayerViewController.swift */; };
 		FCB690761B139854005F83D7 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB690751B139854005F83D7 /* ScheduleViewController.swift */; };
+		FCF4514F1BA05B8D00EECC37 /* libTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF4514C1BA05B8D00EECC37 /* libTestFairy.a */; };
+		FCF451501BA05B8D00EECC37 /* upload-dsym.sh in Resources */ = {isa = PBXBuildFile; fileRef = FCF4514E1BA05B8D00EECC37 /* upload-dsym.sh */; };
+		FCF451521BA05CA500EECC37 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF451511BA05CA500EECC37 /* CoreMedia.framework */; };
+		FCF451541BA05CAB00EECC37 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF451531BA05CAB00EECC37 /* CoreMotion.framework */; };
+		FCF451561BA05CB600EECC37 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF451551BA05CB600EECC37 /* SystemConfiguration.framework */; };
+		FCF451581BA05CBA00EECC37 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF451571BA05CBA00EECC37 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +78,13 @@
 		FCB690691B1397A3005F83D7 /* InsanityRadioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsanityRadioTests.swift; sourceTree = "<group>"; };
 		FCB690731B139845005F83D7 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		FCB690751B139854005F83D7 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		FCF4514C1BA05B8D00EECC37 /* libTestFairy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFairy.a; sourceTree = "<group>"; };
+		FCF4514D1BA05B8D00EECC37 /* TestFairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFairy.h; sourceTree = "<group>"; };
+		FCF4514E1BA05B8D00EECC37 /* upload-dsym.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "upload-dsym.sh"; sourceTree = "<group>"; };
+		FCF451511BA05CA500EECC37 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FCF451531BA05CAB00EECC37 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		FCF451551BA05CB600EECC37 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FCF451571BA05CBA00EECC37 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +92,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF451581BA05CBA00EECC37 /* OpenGLES.framework in Frameworks */,
+				FCF451561BA05CB600EECC37 /* SystemConfiguration.framework in Frameworks */,
+				FCF451541BA05CAB00EECC37 /* CoreMotion.framework in Frameworks */,
+				FCF451521BA05CA500EECC37 /* CoreMedia.framework in Frameworks */,
 				FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */,
 				FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */,
 				B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */,
+				FCF4514F1BA05B8D00EECC37 /* libTestFairy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +125,10 @@
 		FC42CFC91B7181DF003A3251 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCF451571BA05CBA00EECC37 /* OpenGLES.framework */,
+				FCF451551BA05CB600EECC37 /* SystemConfiguration.framework */,
+				FCF451531BA05CAB00EECC37 /* CoreMotion.framework */,
+				FCF451511BA05CA500EECC37 /* CoreMedia.framework */,
 				FC42CFD01B718425003A3251 /* AVFoundation.framework */,
 				FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */,
 				F8DDBFBD7772416FC751AD39 /* libPods.a */,
@@ -146,6 +168,7 @@
 				FCB690661B1397A3005F83D7 /* InsanityRadioTests */,
 				FC5EA4171B6CFFBB0064AF60 /* Images */,
 				FC8D8A251B1B883E004E2065 /* Radio */,
+				FCF4514B1BA05B8D00EECC37 /* TestFairySDK */,
 				FC42CFC91B7181DF003A3251 /* Frameworks */,
 				FCB6904D1B1397A2005F83D7 /* Products */,
 				87489F78404B7CDD57444A93 /* Pods */,
@@ -202,6 +225,16 @@
 				FCB690681B1397A3005F83D7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCF4514B1BA05B8D00EECC37 /* TestFairySDK */ = {
+			isa = PBXGroup;
+			children = (
+				FCF4514C1BA05B8D00EECC37 /* libTestFairy.a */,
+				FCF4514D1BA05B8D00EECC37 /* TestFairy.h */,
+				FCF4514E1BA05B8D00EECC37 /* upload-dsym.sh */,
+			);
+			path = TestFairySDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */,
+				FCF451501BA05B8D00EECC37 /* upload-dsym.sh in Resources */,
 				FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
@@ -494,6 +528,10 @@
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestFairySDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -511,6 +549,10 @@
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TestFairySDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
