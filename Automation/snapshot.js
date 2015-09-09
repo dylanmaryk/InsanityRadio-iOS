@@ -4,7 +4,7 @@ var target = UIATarget.localTarget();
 var app = target.frontMostApp();
 var window = app.mainWindow();
 
-target.delay(5);
+target.delay(10);
 
 captureLocalizedScreenshot("0-FirstScreen")
 
