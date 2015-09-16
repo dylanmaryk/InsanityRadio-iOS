@@ -15,7 +15,7 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showPresentersLabel: UILabel!
     
     func setupCell(show: [String: AnyObject]) {
-        if self.respondsToSelector(Selector("layoutMargins")) {
+        if #available(iOS 8.0, *) {
             self.layoutMargins = UIEdgeInsetsZero
         }
         

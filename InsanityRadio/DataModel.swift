@@ -12,7 +12,7 @@ class DataModel {
     static func getCurrentShow() -> (day: String, name: String, presenters: String, link: String, imageURL: String) {
         if let schedule = getSchedule() {
             let calendar = NSCalendar.currentCalendar()
-            let currentTimeComponents = calendar.components((.CalendarUnitWeekday | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+            let currentTimeComponents = calendar.components([.Weekday, .Hour, .Minute, .Second], fromDate: NSDate())
             let showTimeComponents = NSDateComponents()
             showTimeComponents.year = 1982
             showTimeComponents.month = 8

@@ -9,7 +9,7 @@
 import MediaPlayer
 import UIKit
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: UIViewController, RadioDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var commentButton: UIButton!
@@ -39,7 +39,7 @@ class PlayerViewController: UIViewController {
         NSTimeZone.setDefaultTimeZone(NSTimeZone(name: "Europe/London")!)
         
         // Test if timer retained in background until app terminated by system
-        let components = NSCalendar.currentCalendar().components((.CalendarUnitMinute | .CalendarUnitSecond), fromDate: NSDate())
+        let components = NSCalendar.currentCalendar().components([.Minute, .Second], fromDate: NSDate())
         let secondsUntilNextHour = NSTimeInterval(3600 - (components.minute * 60) - components.second)
         NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: Selector("startCurrentShowTimer"), userInfo: nil, repeats: false)
         
@@ -175,7 +175,7 @@ class PlayerViewController: UIViewController {
             ]
             
             if image != nil {
-                songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+                songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image!)
             }
             
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
@@ -227,7 +227,7 @@ class PlayerViewController: UIViewController {
     @IBAction func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
         
-        if activityViewController.respondsToSelector(Selector("popoverPresentationController")) {
+        if #available(iOS 8.0, *) {
             activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         }
         
@@ -239,15 +239,17 @@ class PlayerViewController: UIViewController {
         updateCurrentShow()
     }
     
-    override func remoteControlReceivedWithEvent(event: UIEvent) {
-        if event.subtype == UIEventSubtype.RemoteControlPlay {
-            playRadio()
-        } else if event.subtype == UIEventSubtype.RemoteControlPause {
-            pauseRadio()
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if event != nil {
+            if event!.subtype == UIEventSubtype.RemoteControlPlay {
+                playRadio()
+            } else if event!.subtype == UIEventSubtype.RemoteControlPause {
+                pauseRadio()
+            }
         }
     }
     
-    func metaTitleUpdated(title: NSString) {
+    func metaTitleUpdated(title: String) {
         DataModel.updateData()
     }
     

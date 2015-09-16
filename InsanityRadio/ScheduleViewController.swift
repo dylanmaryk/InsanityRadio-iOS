@@ -63,7 +63,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             cell.separatorInset = UIEdgeInsetsZero
         }
         
-        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
+        if #available(iOS 8.0, *) {
             cell.preservesSuperviewLayoutMargins = false
         }
     }
