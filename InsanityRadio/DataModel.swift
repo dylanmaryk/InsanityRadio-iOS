@@ -153,8 +153,8 @@ class DataModel {
             }
             
             NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
-            }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                
+        }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            
         })
         requestOperation.start()
     }

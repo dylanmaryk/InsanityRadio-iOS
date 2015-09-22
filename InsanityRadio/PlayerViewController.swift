@@ -24,6 +24,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     var nowPlaying: (song: String, artist: String)!
     var previousNowPlayingArtwork: UIImage?
     var paused: Bool = true
+    var attemptingPlay: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,11 @@ class PlayerViewController: UIViewController, RadioDelegate {
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        
+        // Workaround for play/stop button image changing on rotate on iOS 9
+        if #available(iOS 9.0, *) {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePlayPauseButton", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        }
         
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
@@ -191,6 +197,8 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     func playRadio() {
+        attemptingPlay = true
+        
         playPauseButton.enabled = false
         playPauseButton.alpha = 0.5
         radio.updatePlay(true)
@@ -201,8 +209,20 @@ class PlayerViewController: UIViewController, RadioDelegate {
         radio.updatePlay(false)
     }
     
+    func updatePlayPauseButton() {
+        if attemptingPlay {
+            playPauseButton.enabled = false
+            playPauseButton.alpha = 0.5
+        } else if paused {
+            radioPaused()
+        } else {
+            radioPlayed()
+        }
+    }
+    
     func radioPlayed() {
         paused = false
+        attemptingPlay = false
         
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
@@ -211,6 +231,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func radioPaused() {
         paused = true
+        attemptingPlay = false
         
         playPauseButton.enabled = true
         playPauseButton.alpha = 1
