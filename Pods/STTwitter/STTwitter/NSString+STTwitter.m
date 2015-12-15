@@ -44,13 +44,10 @@ NSString *kSTPOSTMediaFileNameKey = @"kSTPOSTMediaFileNameKey";
     // NFC normalized string https://dev.twitter.com/docs/counting-characters
     NSString *s = [self precomposedStringWithCanonicalMapping];
     
-    __block NSInteger count = 0;
-    [s enumerateSubstringsInRange:NSMakeRange(0, s.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *subString, NSRange subStringRange, NSRange enclosingRange, BOOL *stop) {
-        count++;
-    }];
+    NSInteger count = [s length];
     
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(https?://[A-Za-z0-9_\\.\\-/#\?=&]+)"
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(https?://[A-Za-z0-9_\\.\\-/]+)"
                                                                            options:0
                                                                              error:&error];
     

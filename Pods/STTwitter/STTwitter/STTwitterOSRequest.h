@@ -7,24 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "STTwitterRequestProtocol.h"
 
 @class ACAccount;
 
-@interface STTwitterOSRequest : NSObject <NSURLConnectionDelegate, STTwitterRequestProtocol>
+@interface STTwitterOSRequest : NSObject <NSURLConnectionDelegate>
 
-- (instancetype)initWithAPIResource:(NSString *)resource
-                      baseURLString:(NSString *)baseURLString
-                         httpMethod:(NSInteger)httpMethod
-                         parameters:(NSDictionary *)params
-                            account:(ACAccount *)account
-                   timeoutInSeconds:(NSTimeInterval)timeoutInSeconds
-                uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-                        streamBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSData *data))streamBlock
-                    completionBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))completionBlock
-                         errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock NS_DESIGNATED_INITIALIZER;
+- (id)initWithAPIResource:(NSString *)resource
+            baseURLString:(NSString *)baseURLString
+               httpMethod:(NSInteger)httpMethod
+               parameters:(NSDictionary *)params
+                  account:(ACAccount *)account
+      uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+          completionBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))completionBlock
+               errorBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock;
 
-- (void)startRequest;
-- (NSURLRequest *)preparedURLRequest;
+- (NSURLConnection *)startRequest;
 
 @end

@@ -2,11 +2,6 @@
 
 _A stable, mature and comprehensive Objective-C library for Twitter REST API 1.1_
 
-_Like a FOSS version of Twitter Fabric TwitterKit, without the UI parts but with much more flexibility_
-
-_Also includes a powerful Twitter dev console for OS X_
-
-**[2015-03-28]** Signed build of OS X demo app: [STTwitterDemoOSX.app.zip](http://www.seriot.ch/temp/STTwitterDemoOSX.app.zip)  
 **[2014-06-18]** [Swifter](https://github.com/mattdonnelly/Swifter), A Twitter framework for iOS & OS X written in Swift, by [@MatthewDonnelly](htps://www.twitter.com/MatthewDonnelly/)  
 **[2014-05-31]** Follow STTwitter on Twitter: [@STTLibrary](https://www.twitter.com/STTLibrary/)  
 **[2014-05-22]** STTwitter was presented at [CocoaHeads Lausanne](https://www.facebook.com/events/732041160150290/) ([slides](http://seriot.ch/resources/abusing_twitter_api/sttwitter_cocoaheads.pdf))  
@@ -18,13 +13,12 @@ _Also includes a powerful Twitter dev console for OS X_
 2. [Installation](#installation)
 3. [Code Snippets](#code-snippets)
 4. [Various Kinds of OAuth Connections](#various-kinds-of-oauth-connections)
-5. [Twitter Digits](#twitter-digits)
-6. [OAuth Consumer Tokens](#oauth-consumer-tokens)
-7. [Demo / Test Project](#demo--test-project)
-8. [Integration Tips](#integration-tips)
-9. [Troubleshooting](#troubleshooting)
-10. [Developers](#developers)
-11. [BSD 3-Clause License](#bsd-3-clause-license)  
+5. [OAuth Consumer Tokens](#oauth-consumer-tokens)
+6. [Demo / Test Project](#demo--test-project)
+7. [Integration Tips](#integration-tips)
+8. [Troubleshooting](#troubleshooting)
+9. [Developers](#developers)
+10. [BSD 3-Clause License](#bsd-3-clause-license)  
 
 ### Testimonials
 
@@ -39,13 +33,6 @@ _Also includes a powerful Twitter dev console for OS X_
 
 > "Powered by his own backend wrapper for HTTP calls, STTwitter writes most of the code for you for oAuth based authentication and API resource access like statuses, mentions, users, searches, friends & followers, favorites, lists, places, trends. The documentation is also excellent."
 [STTwitter - Delightful Twitter Library for iOS / buddingdevelopers.com](http://buddingdevelopers.com/sttwitter-delightful-twitter-library-for-ios/)
-
-> Starting using STTwitter on a project. It is absolutely amazing. So easy to use. Thanks @nst021
-[@iOSDevZone](https://twitter.com/iOSDevZone/status/578975327264747520)
-
-> "I'm using this library for a WatchKit app and it works fantastically." [inb4ohnoes](https://github.com/nst/STTwitter/issues/177)
-
-> "I love STTwitter - it made things a breeze when building [@entourageio](http://bit.ly/entourageio)" [@_jeffreyjackson](https://twitter.com/_jeffreyjackson/status/573961997747773441)
 
 ### Installation
 
@@ -70,7 +57,7 @@ STTwitter does not depend on AppKit or UIKit and hence can be used in a command-
 
 STTwitter requires iOS 5+ or OS X 10.7+.
 
-Vea Software has a great live-demo [tutorial](http://www.veasoftware.com/tutorials/2014/6/17/xcode-5-tutorial-ios-7-app-only-authentication-twitter-api-version-11) about creating a simple iOS app using STTwitter's app only mode.
+Vea Software has a great written + live-demo [tutorial](http://tutorials.veasoftware.com/2013/12/23/twitter-api-version-1-1-app-authentication/) about creating a simple iOS app using STTwitter's app only mode.
 
 ### Code Snippets
 
@@ -98,7 +85,7 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:@""
 ##### Verify the credentials
 
 ```Objective-C
-[twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+[twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
     // ...
 } errorBlock:^(NSError *error) {
     // ...
@@ -120,9 +107,9 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:@""
 ##### Streaming API
 
 ```Objective-C
-NSObject <STTwitterRequestProtocol> *request = [twitter getStatusesSampleDelimited:nil
-                                                                     stallWarnings:nil
-                                                                     progressBlock:^(id response) {
+id request = [twitter getStatusesSampleDelimited:nil
+                                   stallWarnings:nil
+                                   progressBlock:^(id response) {
     // ...
 } stallWarningBlock:nil
          errorBlock:^(NSError *error) {
@@ -140,7 +127,7 @@ NSObject <STTwitterRequestProtocol> *request = [twitter getStatusesSampleDelimit
 STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@""
                                                         consumerSecret:@""];
 
-[twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+[twitter verifyCredentialsWithSuccessBlock:^(NSString *bearerToken) {
 
     [twitter getUserTimelineWithScreenName:@"barackobama"
                               successBlock:^(NSArray *statuses) {
@@ -154,34 +141,15 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@""
 }];
 ```
 
-##### Enumerate results with cursors, pause according to rate limits
-
-```Objective-C
-[_twitter fetchAndFollowCursorsForResource:@"followers/ids.json"
-                                HTTPMethod:@"GET"
-                             baseURLString:@"https://api.twitter.com/1.1"
-                                parameters:@{@"screen_name":@"0xcharlie"}
-                       uploadProgressBlock:nil
-                     downloadProgressBlock:nil
-                              successBlock:^(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response, BOOL morePagesToCome, BOOL *stop) {
-    NSLog(@"-- success, more to come: %d, %@", morePagesToCome, response);
-} pauseBlock:^(NSDate *nextRequestDate) {
-    NSLog(@"-- rate limit exhausted, nextRequestDate: %@", nextRequestDate);
-} errorBlock:^(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
-    NSLog(@"-- %@", error);
-}];
-```
-
 ### Various Kinds of OAuth Connections
 
 You can instantiate `STTwitterAPI` in three ways:
 
 - use the Twitter account set in OS X Preferences or iOS Settings
-- use a custom `consumer key` and `consumer secret` (four flavors)
+- use a custom `consumer key` and `consumer secret` (three flavors)
   - get an URL, fetch a PIN, enter it in your app, get oauth access tokens  
   - set `username` and `password`, get oauth access tokens with XAuth, if the app is entitled to
   - set `oauth token` and `oauth token secret` directly
-  - open Safari (or a `UIWebView` instance if you prefer), authenticate on Twitter and receive access tokens in your app through a custom URL scheme
 - use the [Application Only](https://dev.twitter.com/docs/auth/application-only-auth) authentication and get / use a "bearer token"
 
 So there are five cases altogether, hence these five methods:
@@ -205,20 +173,6 @@ So there are five cases altogether, hence these five methods:
 + (STTwitterAPI *)twitterAPIAppOnlyWithConsumerKey:(NSString *)consumerKey
                                     consumerSecret:(NSString *)consumerSecret;
 ```
-
-##### Callbacks URLs
-
-After authenticating in Safari or in a web view, Twitter redirects to the callback URL with some additional parameters. ([Your Twitter app' settings](https://apps.twitter.com/) MUST allow the usage of callbacks by specifying a dummy URL, such as `http://www.cnn.com`.
-This URL is then overriden by the `oauthCallback ` parameter in:
-
-	- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
-	authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize
-	              forceLogin:(NSNumber *)forceLogin
-	              screenName:(NSString *)screenName
-	           oauthCallback:(NSString *)oauthCallback
-	              errorBlock:(void(^)(NSError *error))errorBlock;
-
-<img border="1" src="Art/twitter_app_settings.png" width="600" alt="STTwitter Twitter App Settings"></img>
 
 ##### Reverse Authentication
 
@@ -246,7 +200,7 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerName:nil
 
     STTwitterAPI *twitterAPIOS = [STTwitterAPI twitterAPIOSWithFirstAccount];
 
-    [twitterAPIOS verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+    [twitterAPIOS verifyCredentialsWithSuccessBlock:^(NSString *username) {
 
         [twitterAPIOS postReverseAuthAccessTokenWithAuthenticationHeader:authenticationHeader
                                                             successBlock:^(NSString *oAuthToken,
@@ -270,23 +224,6 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerName:nil
 ```
 
 Contrary to what can be read here and there, you can perfectly [access direct messages from iOS Twitter accounts](http://stackoverflow.com/questions/17990484/accessing-twitter-direct-messages-using-slrequest-ios/18760445#18760445).
-
-### Twitter Digits
-
-[https://dev.twitter.com/twitter-kit/ios/digits](https://dev.twitter.com/twitter-kit/ios/digits)
-
-In this flow, you start with consumer tokens and app only mode, and end up with access tokens, after verifying a phone number with a PIN sent by SMS.
-
-It goes like this:
-
-	1. start with consumer tokens
-	2. get a bearer token (ie. app only mode)
-	2. get a guest token, (ie. temporary user id)
-	3. post a phone number, using the guest token
-	4. post the received PIN code for the phone number, using the guest token
-	5. receive access tokens in return
-
-See a working example in [STAuthenticationVC.m](https://github.com/nst/STTwitter/blob/master/demo_osx/STTwitterDemoOSX/STAuthenticationVC.m#L368-L407).
 
 ### OAuth Consumer Tokens
 
@@ -313,20 +250,6 @@ There is also a simple iOS demo project in `demo_ios`.
 ##### Concurrency
 
 STTwitter is supposed to be used from the main thread. The HTTP requests are performed anychronously and the callbacks are guaranteed to be called on main thread.
-
-##### Credentials verification
-
-There's no need to verify the credentials before each request.
-
-Doing so when the application starts and when the application enters foreground sounds reasonable, though.
-
-##### Timeout
-
-Unless told otherwise, STTwitter will use the underling classes default timeouts.
-
-You can also set the timeout by yourself:
-
-    [twitter setTimeoutInSeconds:5.0];
 
 ##### Remove Asserts in Release Mode
 
@@ -380,7 +303,7 @@ You may want to use Twitter's own Objective-C library for text processing: [http
 
 ##### Logout
 
-The correct approach to logout a user is setting the `STTwitterAPI` instance to nil.
+The correct approach to logout a user is setint the `STTwitterAPI` instance to nil.
 
 You'll create a new one at the next login.
 
@@ -474,9 +397,9 @@ You can create your own convenience methods with fewer parameters. You can also 
         baseURLString:(NSString *)baseURLString
            parameters:(NSDictionary *)params
   uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-downloadProgressBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, id response))downloadProgressBlock
-         successBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))successBlock
-           errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock;
+downloadProgressBlock:(void (^)(id request, id response))downloadProgressBlock
+         successBlock:(void (^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))successBlock
+           errorBlock:(void (^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock;
 ```
 
 ##### Layer Model
@@ -516,7 +439,7 @@ downloadProgressBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, id r
         - uses OS X / iOS frameworks to interact with Twitter API
 
      * STTwitterOSRequest
-        - block-based wrapper around SLRequest's underlying NSURLRequest
+        - black-based wrapper around SLRequest's underlying NSURLRequest
         
      * STTwitterOAuth
         - implements OAuth and xAuth authentication

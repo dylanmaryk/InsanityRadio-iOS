@@ -1,7 +1,7 @@
 Bolts
 ============
 [![Build Status](http://img.shields.io/travis/BoltsFramework/Bolts-iOS/master.svg?style=flat)](https://travis-ci.org/BoltsFramework/Bolts-iOS)
-[![Coverage Status](https://coveralls.io/repos/BoltsFramework/Bolts-iOS/badge.svg)](https://coveralls.io/r/BoltsFramework/Bolts-iOS)
+[![Coverage Status](https://codecov.io/github/BoltsFramework/Bolts-iOS/coverage.svg?branch=master)](https://codecov.io/github/BoltsFramework/Bolts-iOS?branch=master)
 [![Pod Version](http://img.shields.io/cocoapods/v/Bolts.svg?style=flat)](http://cocoadocs.org/docsets/Bolts/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/Bolts.svg?style=flat)](http://cocoadocs.org/docsets/Bolts/)
 [![Pod License](http://img.shields.io/cocoapods/l/Bolts.svg?style=flat)](https://github.com/BoltsFramework/Bolts-iOS/blob/master/LICENSE)
@@ -261,7 +261,7 @@ It's often convenient to have a long chain of success callbacks with only one er
 
 ## Creating Tasks
 
-When you're getting started, you can just use the tasks returned from methods like `findAsync:` or `saveAsync:`. However, for more advanced scenarios, you may want to make your own tasks. To do that, you create a `BFTaskCompletionSource`. This object will let you create a new `BFTask`, and control whether it gets marked as finished or cancelled. After you create a `BFTask`, you'll need to call `setResult:`, `setError:`, or `cancel` to trigger its continuations.
+When you're getting started, you can just use the tasks returned from methods like `findAsync:` or `saveAsync:`. However, for more advanced scenarios, you may want to make your own tasks. To do that, you create a `BFTaskCompletionSource`. This object will let you create a new `BFTask`, and control whether it gets marked as finished or cancelled. After you create a `BFTaskCompletionSource`, you'll need to call `setResult:`, `setError:`, or `cancel` to trigger its continuations.
 
 ```objective-c
 // Objective-C
@@ -333,7 +333,7 @@ With these tools, it's easy to make your own asynchronous functions that return 
 func fetchAsync(object: PFObject) -> BFTask {
   var task = BFTaskCompletionSource()
   object.fetchInBackgroundWithBlock {
-    (object: PFObject!, error: NSError!) -> Void in
+    (object: PFObject?, error: NSError?) -> Void in
     if error == nil {
       task.setResult(object)
     } else {
@@ -498,7 +498,7 @@ MYCancellationToken *cancellationToken = [[MYCancellationToken alloc] init];
 [cancellationToken cancel];
 ```
 
-**Note:** The cancellation token implementation should be thread-safe.  
+**Note:** The cancellation token implementation should be thread-safe.
 We are likely to add some concept like this to Bolts at some point in the future.
 
 # App Links
@@ -517,25 +517,25 @@ For example, you can use the `BFURL` utility class to parse an incoming URL in y
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     BFURL *parsedUrl = [BFURL URLWithInboundURL:url sourceApplication:sourceApplication];
-    
+
     // Use the target URL from the App Link to locate content.
     if ([parsedUrl.targetURL.pathComponents[1] isEqualToString:@"profiles"]) {
         // Open a profile viewer.
     }
-    
+
     // You can also check the query string easily.
     NSString *query = parsedUrl.targetQueryParameters[@"query"];
-    
+
     // Apps that have existing deep-linking support and map their App Links to existing
     // deep-linking functionality may instead want to perform these operations on the input URL.
     // Use the target URL from the App Link to locate content.
     if ([parsedUrl.inputURL.pathComponents[1] isEqualToString:@"profiles"]) {
         // Open a profile viewer.
     }
-    
+
     // You can also check the query string easily.
     NSString *query = parsedUrl.inputQueryParameters[@"query"];
-    
+
     // Apps can easily check the Extras and App Link data from the App Link as well.
     NSString *fbAccessToken = parsedUrl.appLinkExtras[@"fb_access_token"];
     NSDictionary *refererData = parsedUrl.appLinkExtras[@"referer"];
@@ -612,7 +612,7 @@ When an application is opened via an App Link, a banner allowing the user to "To
   // self.returnToRefererView is a BFAppLinkReturnToRefererView.
   // You may initialize the view either by loading it from a NIB or programmatically.
   self.returnToRefererController.view = self.returnToRefererView;
-  
+
   // If you have a UINavigationController in the view, then the bar must be shown above it.
   [self.returnToRefererController]
 }

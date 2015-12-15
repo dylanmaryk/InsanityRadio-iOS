@@ -7,6 +7,7 @@
 //
 
 #import "STTwitterAppOnly.h"
+#import "STHTTPRequest.h"
 #import "NSString+STTwitter.h"
 #import "STHTTPRequest+STTwitter.h"
 
@@ -34,8 +35,8 @@
 
 #pragma mark STTwitterOAuthProtocol
 
-- (void)verifyCredentialsLocallyWithSuccessBlock:(void(^)(NSString *username, NSString *userID))successBlock errorBlock:(void(^)(NSError *error))errorBlock {
-    successBlock(nil, nil); // local check is not possible
+- (BOOL)canVerifyCredentials {
+    return YES;
 }
 
 - (NSString *)oauthAccessToken {
@@ -108,10 +109,8 @@
     return [data base64Encoding];
 }
 
-- (void)verifyCredentialsRemotelyWithSuccessBlock:(void(^)(NSString *username, NSString *userID))successBlock
-                                       errorBlock:(void(^)(NSError *error))errorBlock {
-    
-    __weak typeof(self) weakSelf = self;
+- (void)verifyCredentialsWithSuccessBlock:(void(^)(NSString *username))successBlock
+                               errorBlock:(void(^)(NSError *error))errorBlock {
     
     [self postResource:@"oauth2/token"
          baseURLString:@"https://api.twitter.com"
@@ -121,26 +120,22 @@
  downloadProgressBlock:nil
           successBlock:^(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json) {
               
-              typeof(self) strongSelf = weakSelf;
-              
-              if(strongSelf == nil) return;
-              
               if([json isKindOfClass:[NSDictionary class]] == NO) {
-                  NSError *error = [NSError errorWithDomain:NSStringFromClass([strongSelf class]) code:STTwitterAppOnlyCannotFindJSONInResponse userInfo:@{NSLocalizedDescriptionKey : @"Cannot find JSON dictionary in response"}];
+                  NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:STTwitterAppOnlyCannotFindJSONInResponse userInfo:@{NSLocalizedDescriptionKey : @"Cannot find JSON dictionary in response"}];
                   errorBlock(error);
                   return;
               }
               
               NSString *tokenType = [json valueForKey:@"token_type"];
               if([tokenType isEqualToString:@"bearer"] == NO) {
-                  NSError *error = [NSError errorWithDomain:NSStringFromClass([strongSelf class]) code:STTwitterAppOnlyCannotFindBearerTokenInResponse userInfo:@{NSLocalizedDescriptionKey : @"Cannot find bearer token in server response"}];
+                  NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:STTwitterAppOnlyCannotFindBearerTokenInResponse userInfo:@{NSLocalizedDescriptionKey : @"Cannot find bearer token in server response"}];
                   errorBlock(error);
                   return;
               }
               
-              strongSelf.bearerToken = [json valueForKey:@"access_token"];
+              self.bearerToken = [json valueForKey:@"access_token"];
               
-              successBlock(strongSelf.bearerToken, nil);
+              successBlock(_bearerToken);
               
           } errorBlock:^(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
               errorBlock(error);
@@ -150,7 +145,7 @@
 - (STHTTPRequest *)getResource:(NSString *)resource
                  baseURLString:(NSString *)baseURLString // no trailing slash
                     parameters:(NSDictionary *)params
-                 progressBlock:(void(^)(STHTTPRequest *r, NSData *data))progressBlock
+                 progressBlock:(void(^)(STHTTPRequest *r, id json))progressBlock
                   successBlock:(void (^)(STHTTPRequest *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
                     errorBlock:(void (^)(STHTTPRequest *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
@@ -165,41 +160,47 @@
     
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@/%@", baseURLString, resource];
     
+    NSMutableArray *parameters = [NSMutableArray array];
+    
+    [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *s = [NSString stringWithFormat:@"%@=%@", key, obj];
+        [parameters addObject:s];
+    }];
+    
+    if([parameters count]) {
+        NSString *parameterString = [parameters componentsJoinedByString:@"&"];
+        
+        [urlString appendFormat:@"?%@", parameterString];
+    }
+    
     //    NSString *requestID = [[NSUUID UUID] UUIDString];
     
-    __block __weak STHTTPRequest *wr = nil;
     __block STHTTPRequest *r = [STHTTPRequest twitterRequestWithURLString:urlString
-                                                               HTTPMethod:@"GET"
-                                                         timeoutInSeconds:_timeoutInSeconds
                                              stTwitterUploadProgressBlock:nil
-                                           stTwitterDownloadProgressBlock:^(NSData *data, NSUInteger totalBytesReceived, long long totalBytesExpectedToReceive) {
-                                               if(progressBlock) progressBlock(wr, data);
+                                           stTwitterDownloadProgressBlock:^(id json) {
+                                               if(progressBlock) progressBlock(r, json);
                                            } stTwitterSuccessBlock:^(NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json) {
-                                               successBlock(wr, requestHeaders, responseHeaders, json);
+                                               successBlock(r, requestHeaders, responseHeaders, json);
                                            } stTwitterErrorBlock:^(NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
-                                               errorBlock(wr, requestHeaders, responseHeaders, error);
+                                               errorBlock(r, requestHeaders, responseHeaders, error);
                                            }];
-    wr = r;
-    
     if(_bearerToken) {
         [r setHeaderWithName:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", _bearerToken]];
     }
-    
-    r.GETDictionary = params;
     
     [r startAsynchronous];
     
     return r;
 }
 
-- (NSObject<STTwitterRequestProtocol> *)fetchResource:(NSString *)resource
-                                           HTTPMethod:(NSString *)HTTPMethod
-                                        baseURLString:(NSString *)baseURLString
-                                           parameters:(NSDictionary *)params
-                                  uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-                                downloadProgressBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSData *data))downloadProgressBlock
-                                         successBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
-                                           errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
+- (id)fetchResource:(NSString *)resource
+         HTTPMethod:(NSString *)HTTPMethod
+      baseURLString:(NSString *)baseURLString
+         parameters:(NSDictionary *)params
+uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+downloadProgressBlock:(void(^)(id r, id json))downloadProgressBlock
+       successBlock:(void(^)(id r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
+         errorBlock:(void(^)(id r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
     if([baseURLString hasSuffix:@"/"]) {
         baseURLString = [baseURLString substringToIndex:[baseURLString length]-1];
@@ -230,47 +231,30 @@
     }
 }
 
-- (STHTTPRequest *)postResource:(NSString *)resource
-                  baseURLString:(NSString *)baseURLString // no trailing slash
-                     parameters:(NSDictionary *)params
-                   useBasicAuth:(BOOL)useBasicAuth
-            uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-          downloadProgressBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSData *data))downloadProgressBlock
-                   successBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
-                     errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
+- (id)postResource:(NSString *)resource
+     baseURLString:(NSString *)baseURLString // no trailing slash
+        parameters:(NSDictionary *)params
+      useBasicAuth:(BOOL)useBasicAuth
+uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+downloadProgressBlock:(void(^)(id request, id json))downloadProgressBlock
+      successBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
+        errorBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", baseURLString, resource];
     
-    __block __weak STHTTPRequest *wr = nil;
     __block STHTTPRequest *r = [STHTTPRequest twitterRequestWithURLString:urlString
-                                                               HTTPMethod:@"POST"
-                                                         timeoutInSeconds:_timeoutInSeconds
-                                             stTwitterUploadProgressBlock:nil
-                                           stTwitterDownloadProgressBlock:^(NSData *data, NSUInteger totalBytesReceived, long long totalBytesExpectedToReceive) {
-                                               if(downloadProgressBlock) downloadProgressBlock(wr, data);
+                                             stTwitterUploadProgressBlock:uploadProgressBlock
+                                           stTwitterDownloadProgressBlock:^(id json) {
+                                               if(downloadProgressBlock) downloadProgressBlock(r, json);
                                            } stTwitterSuccessBlock:^(NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json) {
-                                               successBlock(wr, requestHeaders, responseHeaders, json);
+                                               successBlock(r, requestHeaders, responseHeaders, json);
                                            } stTwitterErrorBlock:^(NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
-                                               errorBlock(wr, requestHeaders, responseHeaders, error);
+                                               errorBlock(r, requestHeaders, responseHeaders, error);
                                            }];
     
-    NSMutableDictionary *paramsToBeSent = [NSMutableDictionary dictionaryWithCapacity:[params count]];
+    r.POSTDictionary = params;
     
-    NSString *stTwitterHeaderPrefix = @"[STTWITTER_HEADER_APPONLY_POST]";
-    [params enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
-        if([key hasPrefix:stTwitterHeaderPrefix]) {
-            NSString *headerName = [key substringFromIndex:[stTwitterHeaderPrefix length]];
-            [r setHeaderWithName:headerName value:obj];
-        } else {
-            paramsToBeSent[key] = obj;
-        }
-    }];
-    
-    wr = r;
-    
-    r.POSTDictionary = paramsToBeSent;
-    
-    NSMutableDictionary *mutableParams = [paramsToBeSent mutableCopy];
+    NSMutableDictionary *mutableParams = [params mutableCopy];
     
     r.encodePOSTDictionary = NO;
     
@@ -294,9 +278,9 @@
                   baseURLString:(NSString *)baseURLString
                      parameters:(NSDictionary *)params
             uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-          downloadProgressBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSData *data))downloadProgressBlock
-                   successBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
-                     errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
+          downloadProgressBlock:(void(^)(id r, id json))downloadProgressBlock
+                   successBlock:(void(^)(id r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
+                     errorBlock:(void(^)(id r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
     return [self postResource:resource
                 baseURLString:baseURLString

@@ -19,64 +19,87 @@
 @implementation STHTTPRequest (STTwitter)
 
 + (STHTTPRequest *)twitterRequestWithURLString:(NSString *)urlString
-                                    HTTPMethod:(NSString *)HTTPMethod
-                              timeoutInSeconds:(NSTimeInterval)timeoutInSeconds
                   stTwitterUploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-                stTwitterDownloadProgressBlock:(void(^)(NSData *data, NSUInteger totalBytesReceived, long long totalBytesExpectedToReceive))downloadProgressBlock
+                stTwitterDownloadProgressBlock:(void(^)(id json))downloadProgressBlock
                          stTwitterSuccessBlock:(void(^)(NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json))successBlock
                            stTwitterErrorBlock:(void(^)(NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
     __block STHTTPRequest *r = [self requestWithURLString:urlString];
     __weak STHTTPRequest *wr = r;
     
-    r.HTTPMethod = HTTPMethod;
-
-    r.cookieStoragePolicyForInstance = STHTTPRequestCookiesStorageNoStorage;
+    r.ignoreSharedCookiesStorage = YES;
     
-    r.timeoutSeconds = timeoutInSeconds;
+    r.timeoutSeconds = DBL_MAX;
     
     r.uploadProgressBlock = uploadProgressBlock;
     
-    r.downloadProgressBlock = downloadProgressBlock;
+    r.downloadProgressBlock = ^(NSData *data, NSUInteger totalBytesReceived, long long totalBytesExpectedToReceive) {
+        
+        if(downloadProgressBlock == nil) return;
+        
+        NSError *jsonError = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+        
+        if(json) {
+            downloadProgressBlock(json);
+            return;
+        }
+        
+        // we can receive several dictionaries in the same data chunk
+        // such as '{..}\r\n{..}\r\n{..}' which is not valid JSON
+        // so we split them up into a 'jsonChunks' array such as [{..},{..},{..}]
+        
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSArray *jsonChunks = [jsonString componentsSeparatedByString:@"\r\n"];
+        
+        for(NSString *jsonChunk in jsonChunks) {
+            if([jsonChunk length] == 0) continue;
+            NSData *data = [jsonChunk dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *jsonError = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            if(json == nil) {
+                //                errorBlock(wr.responseHeaders, jsonError);
+                return; // not enough information to say it's an error
+            }
+            downloadProgressBlock(json);
+        }
+    };
     
     r.completionDataBlock = ^(NSDictionary *responseHeaders, NSData *responseData) {
         
-        STHTTPRequest *sr = wr; // strong request
-
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&jsonError];
         
         if(json == nil) {
-            successBlock(sr.requestHeaders, sr.responseHeaders, sr.responseString); // response is not necessarily json
+            successBlock(wr.requestHeaders, wr.responseHeaders, wr.responseString); // response is not necessarily json
             return;
         }
         
-        successBlock(sr.requestHeaders, sr.responseHeaders, json);
+        successBlock(wr.requestHeaders, wr.responseHeaders, json);
     };
     
     r.errorBlock = ^(NSError *error) {
         
-        STHTTPRequest *sr = wr; // strong request
-
-        NSError *e = [NSError st_twitterErrorFromResponseData:sr.responseData responseHeaders:sr.responseHeaders underlyingError:error];
+        NSError *e = [NSError st_twitterErrorFromResponseData:wr.responseData responseHeaders:wr.responseHeaders underlyingError:error];
         if(e) {
-            errorBlock(sr.requestHeaders, sr.responseHeaders, e);
+            errorBlock(wr.requestHeaders, wr.responseHeaders, e);
             return;
         }
 
         if(error) {
-            errorBlock(sr.requestHeaders, sr.responseHeaders, error);
+            errorBlock(wr.requestHeaders, wr.responseHeaders, error);
             return;
         }
         
-        e = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:@{NSLocalizedDescriptionKey : sr.responseString}];
+        e = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:@{NSLocalizedDescriptionKey : wr.responseString}];
         
-        if (sr.responseString) STLog(@"-- body: %@", sr.responseString);
+        if (wr.responseString) STLog(@"-- body: %@", wr.responseString);
         
         //        BOOL isCancellationError = [[error domain] isEqualToString:@"STHTTPRequest"] && ([error code] == kSTHTTPRequestCancellationError);
         //        if(isCancellationError) return;
         
-        errorBlock(sr.requestHeaders, sr.responseHeaders, e);
+        errorBlock(wr.requestHeaders, wr.responseHeaders, error);
     };
     
     return r;
@@ -88,8 +111,7 @@
     
     STHTTPRequest *r = [STHTTPRequest requestWithURLString:urlString];
     
-    r.cookieStoragePolicyForInstance = STHTTPRequestCookiesStorageNoStorage;
-
+    r.ignoreSharedCookiesStorage = YES;
     r.preventRedirections = YES;
     
     r.completionBlock = ^(NSDictionary *responseHeaders, NSString *body) {

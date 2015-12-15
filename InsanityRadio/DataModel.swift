@@ -131,7 +131,7 @@ class DataModel {
         let manager = AFHTTPRequestOperationManager()
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         manager.responseSerializer = AFJSONResponseSerializer()
-        let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+        let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             if let nowPlaying = responseObject["nowPlaying"] as? [String: String] {
                 self.setUserDefaultsObjectArchived(nowPlaying, forKey: "nowPlaying")
             }
@@ -153,10 +153,10 @@ class DataModel {
             }
             
             NSNotificationCenter.defaultCenter().postNotificationName("DataUpdated", object: nil)
-        }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+        }, failure: {(operation: AFHTTPRequestOperation?, error: NSError) -> Void in
             
         })
-        requestOperation.start()
+        requestOperation!.start()
     }
     
     static func setUserDefaultsObjectArchived(object: AnyObject, forKey key: String) {
