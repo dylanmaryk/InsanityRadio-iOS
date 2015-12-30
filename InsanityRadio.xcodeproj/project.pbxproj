@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DDBFBD7772416FC751AD39 /* libPods.a */; };
+		FC208A561C336DC20082B625 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FC208A551C336DC20082B625 /* Config.xcconfig */; };
 		FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */; };
 		FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFD01B718425003A3251 /* AVFoundation.framework */; };
 		FC5B3E0B1B7E661E004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E091B7E661E004D258E /* play.png */; };
@@ -44,6 +45,7 @@
 		8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F8DDBFBD7772416FC751AD39 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC208A551C336DC20082B625 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FC42CFD01B718425003A3251 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC5B3E091B7E661E004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				FC42CFC91B7181DF003A3251 /* Frameworks */,
 				FCB6904D1B1397A2005F83D7 /* Products */,
 				87489F78404B7CDD57444A93 /* Pods */,
+				FC208A551C336DC20082B625 /* Config.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,6 +302,7 @@
 				FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
+				FC208A561C336DC20082B625 /* Config.xcconfig in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
 				FC5B3E0C1B7E661E004D258E /* stop.png in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,
@@ -420,6 +424,7 @@
 /* Begin XCBuildConfiguration section */
 		FCB6906B1B1397A3005F83D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC208A551C336DC20082B625 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -466,6 +471,7 @@
 		};
 		FCB6906C1B1397A3005F83D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC208A551C336DC20082B625 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

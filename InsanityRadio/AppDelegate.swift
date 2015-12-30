@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Socialize.storeLocationSharingDisabled(true)
-        Socialize.storeConsumerKey("1ad7074b-e1f3-4e90-8d2f-60633faabc11")
-        Socialize.storeConsumerSecret("7e05ee22-1fba-421a-b53a-e3b6d3e8f356")
+        Socialize.storeConsumerKey(SOCIALIZE_CONSUMER_KEY)
+        Socialize.storeConsumerSecret(SOCIALIZE_CONSUMER_SECRET)
         
         window?.backgroundColor = UIColor.whiteColor()
         
