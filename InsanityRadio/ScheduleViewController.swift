@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUI), name: "DataUpdated", object: nil)
         
         scheduleTableView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController!.tabBar.frame.size.height, 0);
         scheduleTableView.scrollIndicatorInsets = scheduleTableView.contentInset
@@ -59,7 +59,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if cell.respondsToSelector("setSeparatorInset:") {
+        if cell.respondsToSelector(Selector("setSeparatorInset:")) {
             cell.separatorInset = UIEdgeInsetsZero
         }
         

@@ -33,11 +33,11 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUI", name: "DataUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUI), name: "DataUpdated", object: nil)
         
         // Workaround for play/stop button image changing on rotate on iOS 9
         if #available(iOS 9.0, *) {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePlayPauseButton", name: UIDeviceOrientationDidChangeNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePlayPauseButton), name: UIDeviceOrientationDidChangeNotification, object: nil)
         }
         
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
@@ -47,7 +47,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         // Test if timer retained in background until app terminated by system
         let components = NSCalendar.currentCalendar().components([.Minute, .Second], fromDate: NSDate())
         let secondsUntilNextHour = NSTimeInterval(3600 - (components.minute * 60) - components.second)
-        NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: Selector("startCurrentShowTimer"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(secondsUntilNextHour, target: self, selector: #selector(startCurrentShowTimer), userInfo: nil, repeats: false)
         
         let titleViewImageView = UIImageView(frame: CGRectMake(0, 0, 35, 35))
         titleViewImageView.image = UIImage(named: "headphone")
@@ -257,7 +257,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     func startCurrentShowTimer() {
-        NSTimer.scheduledTimerWithTimeInterval(3600, target: self, selector: Selector("updateCurrentShow"), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(3600, target: self, selector: #selector(updateCurrentShow), userInfo: nil, repeats: true)
         updateCurrentShow()
     }
     
