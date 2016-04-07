@@ -23,8 +23,8 @@ class PlayerViewController: UIViewController, RadioDelegate {
     var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
     var nowPlaying: (song: String, artist: String)!
     var previousNowPlayingArtwork: UIImage?
-    var paused: Bool = true
-    var attemptingPlay: Bool = true
+    var paused = true
+    var attemptingPlay = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +80,9 @@ class PlayerViewController: UIViewController, RadioDelegate {
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + LASTFM_API_KEY + "&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&autocorrect&format=json"
         url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         manager.responseSerializer = AFJSONResponseSerializer()
-        let requestOperation = manager.GET(url, parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
+        let requestOperation = manager.GET(url, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.updateImageWithResponse(responseObject)
-        }, failure: {(operation: AFHTTPRequestOperation?, error: NSError) -> Void in
+        }, failure: { (operation: AFHTTPRequestOperation?, error: NSError) -> Void in
             self.displayCurrentShowImage()
         })
         requestOperation!.start()
@@ -115,8 +115,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
             album = track["album"] as? [String: AnyObject],
             images = album["image"] as? [[String: String]] {
             for image in images {
-                if image["size"] == "extralarge",
-                    let text = image["#text"] {
+                if let text = image["#text"] where image["size"] == "extralarge" {
                     updateImageWithURL(text)
                     
                     return
@@ -129,9 +128,9 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func updateImageWithURL(imageURL: String) {
         manager.responseSerializer = AFImageResponseSerializer()
-        let requestOperation = manager.GET(imageURL, parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
+        let requestOperation = manager.GET(imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
-        }, failure: {(operation: AFHTTPRequestOperation?, error: NSError) -> Void in
+        }, failure: { (operation: AFHTTPRequestOperation?, error: NSError) -> Void in
             self.displayCurrentShowImage()
         })
         requestOperation!.start()
@@ -139,9 +138,9 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func displayCurrentShowImage() {
         manager.responseSerializer = AFImageResponseSerializer()
-        let requestOperation = manager.GET(currentShow.imageURL, parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
+        let requestOperation = manager.GET(currentShow.imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
-        }, failure: {(operation: AFHTTPRequestOperation?, error: NSError) -> Void in
+        }, failure: { (operation: AFHTTPRequestOperation?, error: NSError) -> Void in
             self.displayDefaultImage()
         })
         requestOperation!.start()
@@ -158,35 +157,37 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     func displayNowPlayingInfo(image: UIImage?) {
-        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-            previousNowPlayingArtwork = image
-            
-            var nowPlayingSong: String
-            var currentShowName: String
-            
-            if paused {
-                nowPlayingSong = "Insanity Radio"
-            } else {
-                nowPlayingSong = nowPlaying.song
-            }
-            
-            if currentShow == nil {
-                currentShowName = "103.2FM"
-            } else {
-                currentShowName = currentShow.name
-            }
-            
-            var songInfo: [String: AnyObject] = [
-                MPMediaItemPropertyTitle: nowPlayingSong,
-                MPMediaItemPropertyArtist: currentShowName
-            ]
-            
-            if image != nil {
-                songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image!)
-            }
-            
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        if NSClassFromString("MPNowPlayingInfoCenter") == nil {
+            return
         }
+        
+        previousNowPlayingArtwork = image
+        
+        var nowPlayingSong: String
+        var currentShowName: String
+        
+        if paused {
+            nowPlayingSong = "Insanity Radio"
+        } else {
+            nowPlayingSong = nowPlaying.song
+        }
+        
+        if currentShow == nil {
+            currentShowName = "103.2FM"
+        } else {
+            currentShowName = currentShow.name
+        }
+        
+        var songInfo: [String: AnyObject] = [
+            MPMediaItemPropertyTitle: nowPlayingSong,
+            MPMediaItemPropertyArtist: currentShowName
+        ]
+        
+        if let nowPlayingImage = image {
+            songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: nowPlayingImage)
+        }
+        
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
     }
     
     @IBAction func playPauseButtonTapped() {
@@ -262,12 +263,14 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {
-        if event != nil {
-            if event!.subtype == UIEventSubtype.RemoteControlPlay {
-                playRadio()
-            } else if event!.subtype == UIEventSubtype.RemoteControlPause {
-                pauseRadio()
-            }
+        guard let controlEvent = event else {
+            return
+        }
+        
+        if controlEvent.subtype == UIEventSubtype.RemoteControlPlay {
+            playRadio()
+        } else if controlEvent.subtype == UIEventSubtype.RemoteControlPause {
+            pauseRadio()
         }
     }
     

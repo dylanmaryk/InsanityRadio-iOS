@@ -42,7 +42,7 @@ class DataModel {
                 
                 for show in shows {
                     if let startTime = show["startTime"] as? Int,
-                        let endTime = show["endTime"] as? Int {
+                        endTime = show["endTime"] as? Int {
                         // Note: Making assumption that if the last show of the week ends after the end of the week, it ends when the first show of the week begins
                         let showEndsAfterEndOfWeek = endTime > 397609200
                         
@@ -83,48 +83,48 @@ class DataModel {
     }
     
     static func getNowPlaying() -> (song: String, artist: String) {
-        if let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData {
-            let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
-            
-            let song = nowPlaying["song"]!
-            let artist = nowPlaying["artist"]!
-            
-            return (song, artist)
+        guard let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData else {
+            return ("", "")
         }
         
-        return ("", "")
+        let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
+        
+        let song = nowPlaying["song"]!
+        let artist = nowPlaying["artist"]!
+        
+        return (song, artist)
     }
     
     static func getSchedule() -> [String: [[String: AnyObject]]]? {
-        if let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData) as? [String: [[String: AnyObject]]]
+        guard let scheduleData = NSUserDefaults.standardUserDefaults().objectForKey("schedule") as? NSData else {
+            return nil
         }
         
-        return nil
+        return NSKeyedUnarchiver.unarchiveObjectWithData(scheduleData) as? [String: [[String: AnyObject]]]
     }
     
     static func getShareText() -> String {
-        if let shareTextData = NSUserDefaults.standardUserDefaults().objectForKey("shareText") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextData) as! String
+        guard let shareTextData = NSUserDefaults.standardUserDefaults().objectForKey("shareText") as? NSData else {
+            return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
         }
         
-        return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+        return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextData) as! String
     }
     
     static func getShareTextTwitter() -> String {
-        if let shareTextTwitterData = NSUserDefaults.standardUserDefaults().objectForKey("shareTextTwitter") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextTwitterData) as! String
+        guard let shareTextTwitterData = NSUserDefaults.standardUserDefaults().objectForKey("shareTextTwitter") as? NSData else {
+            return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
         }
         
-        return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+        return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextTwitterData) as! String
     }
     
     static func getEnableComment() -> Bool {
-        if let enableCommentData = NSUserDefaults.standardUserDefaults().objectForKey("enableComment") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(enableCommentData) as! Bool
+        guard let enableCommentData = NSUserDefaults.standardUserDefaults().objectForKey("enableComment") as? NSData else {
+            return true
         }
         
-        return true
+        return NSKeyedUnarchiver.unarchiveObjectWithData(enableCommentData) as! Bool
     }
     
     static func updateData() {

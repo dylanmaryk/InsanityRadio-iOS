@@ -43,11 +43,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if schedule != nil {
-            return schedule!.count
+        guard let validSchedule = schedule else {
+            return 0
         }
         
-        return 0
+        return validSchedule.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -55,7 +55,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schedule![dayForSection(section)]!.count
+        guard let validSchedule = schedule,
+            scheduleDay = validSchedule[dayForSection(section)] else {
+                return 0
+        }
+        
+        return scheduleDay.count
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -76,9 +81,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let linkURL = showForIndexPath(indexPath)["linkURL"] as? String {
-            UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
+        guard let linkURL = showForIndexPath(indexPath)["linkURL"] as? String else {
+            return
         }
+        
+        UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
     }
     
     func sectionForDay(day: String) -> Int {
@@ -124,6 +131,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func showForIndexPath(indexPath: NSIndexPath) -> [String: AnyObject] {
-        return schedule![dayForSection(indexPath.section)]![indexPath.row]
+        guard let validSchedule = schedule,
+            scheduleDay = validSchedule[dayForSection(indexPath.section)] else {
+                return [:]
+        }
+        
+        return scheduleDay[indexPath.row]
     }
 }
