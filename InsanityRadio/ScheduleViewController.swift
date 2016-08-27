@@ -88,7 +88,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         UIApplication.sharedApplication().openURL(NSURL(string: linkURL)!)
     }
     
-    func sectionForDay(day: String) -> Int {
+    private func sectionForDay(day: String) -> Int {
         switch day {
             case "monday":
                 return 0
@@ -109,7 +109,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func dayForSection(section: Int) -> String {
+    private func dayForSection(section: Int) -> String {
         switch section {
             case 0:
                 return "monday"
@@ -130,7 +130,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func showForIndexPath(indexPath: NSIndexPath) -> [String: AnyObject] {
+    private func showForIndexPath(indexPath: NSIndexPath) -> [String: AnyObject] {
         guard let validSchedule = schedule,
             scheduleDay = validSchedule[dayForSection(indexPath.section)] else {
                 return [:]

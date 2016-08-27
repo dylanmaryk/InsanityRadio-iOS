@@ -89,7 +89,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         displayNowPlayingInfo(previousNowPlayingArtwork)
     }
     
-    func enableDisableComment() {
+    private func enableDisableComment() {
         if DataModel.getEnableComment() {
             commentButton.hidden = false
         } else {
@@ -108,7 +108,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         currentShowLabel.text = currentShowLabelText
     }
     
-    func updateImageWithResponse(responseObject: AnyObject) {
+    private func updateImageWithResponse(responseObject: AnyObject) {
         if let track = responseObject["track"] as? [String: AnyObject],
             let album = track["album"] as? [String: AnyObject],
             let images = album["image"] as? [[String: String]] {
@@ -124,7 +124,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         displayCurrentShowImage()
     }
     
-    func updateImageWithURL(imageURL: String) {
+    private func updateImageWithURL(imageURL: String) {
         manager.responseSerializer = AFImageResponseSerializer()
         let requestOperation = manager.GET(imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
@@ -134,7 +134,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         requestOperation!.start()
     }
     
-    func displayCurrentShowImage() {
+    private func displayCurrentShowImage() {
         manager.responseSerializer = AFImageResponseSerializer()
         let requestOperation = manager.GET(DataModel.getCurrentShow().imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
@@ -144,17 +144,17 @@ class PlayerViewController: UIViewController, RadioDelegate {
         requestOperation!.start()
     }
     
-    func displayFinalImage(image: UIImage?) {
+    private func displayFinalImage(image: UIImage?) {
         self.albumArtImageView.image = image
         displayNowPlayingInfo(image);
     }
     
-    func displayDefaultImage() {
+    private func displayDefaultImage() {
         self.albumArtImageView.image = UIImage(named: "insanity-icon.png")
         displayNowPlayingInfo(nil);
     }
     
-    func displayNowPlayingInfo(image: UIImage?) {
+    private func displayNowPlayingInfo(image: UIImage?) {
         if NSClassFromString("MPNowPlayingInfoCenter") == nil {
             return
         }
@@ -191,7 +191,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
     }
     
-    @IBAction func playPauseButtonTapped() {
+    @IBAction private func playPauseButtonTapped() {
         if paused {
             playRadio()
         } else {
@@ -199,7 +199,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         }
     }
     
-    func playRadio() {
+    private func playRadio() {
         attemptingPlay = true
         
         playPauseButton.enabled = false
@@ -207,7 +207,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         radio.updatePlay(true)
     }
     
-    func pauseRadio() {
+    private func pauseRadio() {
         radioPaused()
         radio.updatePlay(false)
     }
@@ -223,7 +223,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         }
     }
     
-    func radioPlayed() {
+    private func radioPlayed() {
         paused = false
         attemptingPlay = false
         
@@ -232,7 +232,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         playPauseButton.imageView?.image = UIImage(named: "stop.png")
     }
     
-    func radioPaused() {
+    private func radioPaused() {
         paused = true
         attemptingPlay = false
         
@@ -243,12 +243,12 @@ class PlayerViewController: UIViewController, RadioDelegate {
         displayDefaultImage()
     }
     
-    @IBAction func commentButtonTapped() {
+    @IBAction private func commentButtonTapped() {
         let entity = SocializeEntity(key: "insanityradio")
         SZCommentUtils.showCommentsListWithViewController(self, entity: entity, completion: nil)
     }
     
-    @IBAction func shareButtonTapped() {
+    @IBAction private func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
         
         if #available(iOS 8.0, *) {

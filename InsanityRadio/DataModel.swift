@@ -61,7 +61,7 @@ class DataModel {
         return ("", "", "", "", "")
     }
     
-    static func getDayStringForDayInt(day: Int) -> String {
+    private static func getDayStringForDayInt(day: Int) -> String {
         switch day {
             case 1:
                 return "sunday"
@@ -159,7 +159,7 @@ class DataModel {
         requestOperation!.start()
     }
     
-    static func setUserDefaultsObjectArchived(object: AnyObject, forKey key: String) {
+    private static func setUserDefaultsObjectArchived(object: AnyObject, forKey key: String) {
         NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(object), forKey: key)
     }
 }

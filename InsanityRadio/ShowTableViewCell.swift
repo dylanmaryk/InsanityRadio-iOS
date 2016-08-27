@@ -28,7 +28,7 @@ class ShowTableViewCell: UITableViewCell {
         showPresentersLabel.text = show["showPresenters"] as? String
     }
     
-    func colorForShowType(showType: String) -> UIColor {
+    private func colorForShowType(showType: String) -> UIColor {
         switch showType {
             case "automated":
                 return UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
