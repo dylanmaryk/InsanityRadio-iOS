@@ -18,13 +18,11 @@ class PlayerViewController: UIViewController, RadioDelegate {
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var albumArtImageView: UIImageView!
     
-    let radio = Radio()
-    let manager = AFHTTPRequestOperationManager()
-    var currentShow: (day: String, name: String, presenters: String, link: String, imageURL: String)!
-    var nowPlaying: (song: String, artist: String)!
-    var previousNowPlayingArtwork: UIImage?
-    var paused = true
-    var attemptingPlay = true
+    private let radio = Radio()
+    private let manager = AFHTTPRequestOperationManager()
+    private var previousNowPlayingArtwork: UIImage?
+    private var paused = true
+    private var attemptingPlay = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +72,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         updateCurrentShow()
         
-        nowPlaying = DataModel.getNowPlaying()
+        let nowPlaying = DataModel.getNowPlaying()
         nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
         
         var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + LASTFM_API_KEY + "&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&autocorrect&format=json"
@@ -100,7 +98,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     func updateCurrentShow() {
-        currentShow = DataModel.getCurrentShow()
+        let currentShow = DataModel.getCurrentShow()
         var currentShowLabelText = currentShow.name
         
         if currentShow.presenters != "" {
@@ -112,8 +110,8 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func updateImageWithResponse(responseObject: AnyObject) {
         if let track = responseObject["track"] as? [String: AnyObject],
-            album = track["album"] as? [String: AnyObject],
-            images = album["image"] as? [[String: String]] {
+            let album = track["album"] as? [String: AnyObject],
+            let images = album["image"] as? [[String: String]] {
             for image in images {
                 if let text = image["#text"] where image["size"] == "extralarge" {
                     updateImageWithURL(text)
@@ -138,7 +136,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func displayCurrentShowImage() {
         manager.responseSerializer = AFImageResponseSerializer()
-        let requestOperation = manager.GET(currentShow.imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
+        let requestOperation = manager.GET(DataModel.getCurrentShow().imageURL, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
             self.displayFinalImage(responseObject as? UIImage)
         }, failure: { (operation: AFHTTPRequestOperation?, error: NSError) -> Void in
             self.displayDefaultImage()
@@ -163,6 +161,9 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         previousNowPlayingArtwork = image
         
+        let nowPlaying = DataModel.getNowPlaying()
+        let currentShow = DataModel.getCurrentShow()
+        
         var nowPlayingSong: String
         var currentShowName: String
         
@@ -172,7 +173,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
             nowPlayingSong = nowPlaying.song
         }
         
-        if currentShow == nil {
+        if currentShow.name == "" {
             currentShowName = "103.2FM"
         } else {
             currentShowName = currentShow.name

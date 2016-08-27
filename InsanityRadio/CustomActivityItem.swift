@@ -9,12 +9,12 @@
 import UIKit
 
 class CustomActivityItem: NSObject, UIActivityItemSource {
-    var shareText: String!
+    private var shareText: String
     
     override init() {
-        super.init()
-        
         shareText = DataModel.getShareText()
+        
+        super.init()
     }
     
     func activityViewControllerPlaceholderItem(activityViewController: UIActivityViewController) -> AnyObject {

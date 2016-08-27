@@ -42,7 +42,7 @@ class DataModel {
                 
                 for show in shows {
                     if let startTime = show["startTime"] as? Int,
-                        endTime = show["endTime"] as? Int {
+                        let endTime = show["endTime"] as? Int {
                         // Note: Making assumption that if the last show of the week ends after the end of the week, it ends when the first show of the week begins
                         let showEndsAfterEndOfWeek = endTime > 397609200
                         

@@ -11,7 +11,7 @@ import UIKit
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var scheduleTableView: UITableView!
     
-    var schedule: [String: [[String: AnyObject]]]?
+    private var schedule: [String: [[String: AnyObject]]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
