@@ -301,7 +301,7 @@
     </scenes>
     <resources>
         <image name="comment" width="22" height="22"/>
-        <image name="insanity-icon.png" width="1024" height="1024"/>
+        <image name="insanity-icon.png" width="4165" height="3382"/>
         <image name="nowplaying" width="25" height="25"/>
         <image name="play.png" width="100" height="100"/>
         <image name="schedule" width="25" height="25"/>

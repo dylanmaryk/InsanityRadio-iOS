@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7DBB05CF1EF317220063DA05 /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05CE1EF317220063DA05 /* launchimage.png */; };
+		7DBB05D11EF317560063DA05 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05D01EF317560063DA05 /* insanity-icon.png */; };
+		7DBB05D31EF318020063DA05 /* social.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05D21EF318020063DA05 /* social.png */; };
 		B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DDBFBD7772416FC751AD39 /* libPods.a */; };
 		FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */; };
 		FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFD01B718425003A3251 /* AVFoundation.framework */; };
 		FC5B3E0B1B7E661E004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E091B7E661E004D258E /* play.png */; };
 		FC5B3E0C1B7E661E004D258E /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0A1B7E661E004D258E /* stop.png */; };
-		FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0D1B7F71E3004D258E /* launchimage.png */; };
-		FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
@@ -41,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7DBB05CE1EF317220063DA05 /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = "../../Pictures/Insanity Logos 2017/Logos/Dark/PNG/launchimage.png"; sourceTree = "<group>"; };
+		7DBB05D01EF317560063DA05 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "../../Pictures/Insanity Logos 2017/Headphones & Misc/PNGs/insanity-icon.png"; sourceTree = "<group>"; };
+		7DBB05D21EF318020063DA05 /* social.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = social.png; sourceTree = "<group>"; };
 		8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F8DDBFBD7772416FC751AD39 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,8 +53,6 @@
 		FC4C766E1CB5B90E00B1F962 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		FC5B3E091B7E661E004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
 		FC5B3E0A1B7E661E004D258E /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Images/stop.png; sourceTree = "<group>"; };
-		FC5B3E0D1B7F71E3004D258E /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = Images/launchimage.png; sourceTree = "<group>"; };
-		FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "Images/insanity-icon.png"; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -118,8 +120,9 @@
 		FC5EA4171B6CFFBB0064AF60 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */,
-				FC5B3E0D1B7F71E3004D258E /* launchimage.png */,
+				7DBB05D21EF318020063DA05 /* social.png */,
+				7DBB05D01EF317560063DA05 /* insanity-icon.png */,
+				7DBB05CE1EF317220063DA05 /* launchimage.png */,
 				FC5B3E091B7E661E004D258E /* play.png */,
 				FC5B3E0A1B7E661E004D258E /* stop.png */,
 			);
@@ -299,14 +302,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */,
-				FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */,
+				7DBB05D11EF317560063DA05 /* insanity-icon.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
 				FC5B3E0C1B7E661E004D258E /* stop.png in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,
 				FC5B3E0B1B7E661E004D258E /* play.png in Resources */,
+				7DBB05CF1EF317220063DA05 /* launchimage.png in Resources */,
+				7DBB05D31EF318020063DA05 /* social.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
