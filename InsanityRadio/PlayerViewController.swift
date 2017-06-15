@@ -27,7 +27,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        radio.connect("http://stream.insanityradio.com:8000/insanity320.mp3", withDelegate: self, withGain: (1.0))
+        radio.connect("https://insanityradio.com/listen/get_current_stream.mp3?platform=iOS&version=" + API_VERSION, withDelegate: self, withGain: (1.0))
         
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
@@ -73,17 +73,17 @@ class PlayerViewController: UIViewController, RadioDelegate {
         updateCurrentShow()
         
         let nowPlaying = DataModel.getNowPlaying()
-        nowPlayingLabel.text = nowPlaying.artist + "\n" + nowPlaying.song
+        nowPlayingLabel.text = nowPlaying.song + "\n" + nowPlaying.artist
         
-        var url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + LASTFM_API_KEY + "&artist=" + nowPlaying.artist + "&track=" + nowPlaying.song + "&autocorrect&format=json"
-        url = url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        manager.responseSerializer = AFJSONResponseSerializer()
-        let requestOperation = manager.GET(url, parameters: nil, success: { (operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
-            self.updateImageWithResponse(responseObject)
-        }, failure: { (operation: AFHTTPRequestOperation?, error: NSError) -> Void in
+        print("TEST! \(nowPlaying.song) \(nowPlaying.artist)")
+        
+        if let art = nowPlaying.album_art {
+            updateImageWithURL(art)
+        } else {
             self.displayCurrentShowImage()
-        })
-        requestOperation!.start()
+        }
+        
+        print("HELLO!")
         
         radioPlayed()
         displayNowPlayingInfo(previousNowPlayingArtwork)
@@ -108,7 +108,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         currentShowLabel.text = currentShowLabelText
     }
     
-    private func updateImageWithResponse(responseObject: AnyObject) {
+    /*private func updateImageWithResponse(responseObject: AnyObject) {
         if let track = responseObject["track"] as? [String: AnyObject],
             let album = track["album"] as? [String: AnyObject],
             let images = album["image"] as? [[String: String]] {
@@ -122,7 +122,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         }
         
         displayCurrentShowImage()
-    }
+    } */
     
     private func updateImageWithURL(imageURL: String) {
         manager.responseSerializer = AFImageResponseSerializer()

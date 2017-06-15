@@ -8,15 +8,14 @@
 
 import UIKit
 
+let API_VERSION = "1.1.0"
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Socialize.storeLocationSharingDisabled(true)
-        Socialize.storeConsumerKey(SOCIALIZE_CONSUMER_KEY)
-        Socialize.storeConsumerSecret(SOCIALIZE_CONSUMER_SECRET)
         
         window?.backgroundColor = UIColor.whiteColor()
         

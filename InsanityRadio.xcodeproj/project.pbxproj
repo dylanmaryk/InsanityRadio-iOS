@@ -261,6 +261,7 @@
 					FCB6904B1B1397A2005F83D7 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 583F3QZPX7;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -269,6 +270,7 @@
 					};
 					FCB690621B1397A3005F83D7 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = FCB6904B1B1397A2005F83D7;
 					};
 				};
@@ -518,6 +520,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanityradio.insanityradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -536,6 +539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanityradio.insanityradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -556,6 +560,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.insanityradio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InsanityRadio.app/InsanityRadio";
 			};
 			name = Debug;
@@ -572,6 +577,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.insanityradio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InsanityRadio.app/InsanityRadio";
 			};
 			name = Release;
