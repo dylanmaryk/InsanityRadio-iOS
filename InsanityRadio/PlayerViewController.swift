@@ -34,9 +34,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUI), name: "DataUpdated", object: nil)
         
         // Workaround for play/stop button image changing on rotate on iOS 9
-        if #available(iOS 9.0, *) {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePlayPauseButton), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePlayPauseButton), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
@@ -75,26 +73,18 @@ class PlayerViewController: UIViewController, RadioDelegate {
         let nowPlaying = DataModel.getNowPlaying()
         nowPlayingLabel.text = nowPlaying.song + "\n" + nowPlaying.artist
         
-        print("TEST! \(nowPlaying.song) \(nowPlaying.artist)")
-        
         if let art = nowPlaying.album_art {
             updateImageWithURL(art)
         } else {
             self.displayCurrentShowImage()
         }
         
-        print("HELLO!")
-        
         radioPlayed()
         displayNowPlayingInfo(previousNowPlayingArtwork)
     }
     
     private func enableDisableComment() {
-        if DataModel.getEnableComment() {
-            commentButton.hidden = false
-        } else {
-            commentButton.hidden = true
-        }
+        commentButton.hidden = false
     }
     
     func updateCurrentShow() {
@@ -107,22 +97,6 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         currentShowLabel.text = currentShowLabelText
     }
-    
-    /*private func updateImageWithResponse(responseObject: AnyObject) {
-        if let track = responseObject["track"] as? [String: AnyObject],
-            let album = track["album"] as? [String: AnyObject],
-            let images = album["image"] as? [[String: String]] {
-            for image in images {
-                if let text = image["#text"] where image["size"] == "extralarge" {
-                    updateImageWithURL(text)
-                    
-                    return
-                }
-            }
-        }
-        
-        displayCurrentShowImage()
-    } */
     
     private func updateImageWithURL(imageURL: String) {
         manager.responseSerializer = AFImageResponseSerializer()
@@ -244,16 +218,12 @@ class PlayerViewController: UIViewController, RadioDelegate {
     }
     
     @IBAction private func commentButtonTapped() {
-        let entity = SocializeEntity(key: "insanityradio")
-        SZCommentUtils.showCommentsListWithViewController(self, entity: entity, completion: nil)
     }
     
     @IBAction private func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
         
-        if #available(iOS 8.0, *) {
-            activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
-        }
+        activityViewController.popoverPresentationController?.barButtonItem = shareBarButtonItem
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
     }
@@ -289,6 +259,8 @@ class PlayerViewController: UIViewController, RadioDelegate {
     
     func connectProblem() {
         radioPaused()
-        UIAlertView(title: "Cannot Stream Insanity", message: "There was a problem streaming Insanity Radio. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
+        dispatch_async(dispatch_get_main_queue()) {
+            UIAlertView(title: "Cannot Stream Insanity", message: "There was a problem streaming Insanity Radio. Please check your Internet connection.", delegate: self, cancelButtonTitle: "OK").show()
+        }
     }
 }
