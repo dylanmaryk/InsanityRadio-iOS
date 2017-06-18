@@ -12,7 +12,6 @@ import UIKit
 class PlayerViewController: UIViewController, RadioDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var currentShowLabel: UILabel!
     @IBOutlet weak var nowPlayingLabel: UILabel!
@@ -60,14 +59,10 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         playPauseButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
-        enableDisableComment()
-        
         updateCurrentShow()
     }
     
-    func updateUI() {
-        enableDisableComment()
-        
+    func updateUI() {       
         updateCurrentShow()
         
         let nowPlaying = DataModel.getNowPlaying()
@@ -81,10 +76,6 @@ class PlayerViewController: UIViewController, RadioDelegate {
         
         radioPlayed()
         displayNowPlayingInfo(previousNowPlayingArtwork)
-    }
-    
-    private func enableDisableComment() {
-        commentButton.hidden = false
     }
     
     func updateCurrentShow() {
@@ -217,8 +208,6 @@ class PlayerViewController: UIViewController, RadioDelegate {
         displayDefaultImage()
     }
     
-    @IBAction private func commentButtonTapped() {
-    }
     
     @IBAction private func shareButtonTapped() {
         let activityViewController = UIActivityViewController(activityItems: [CustomActivityItem()], applicationActivities: nil)
