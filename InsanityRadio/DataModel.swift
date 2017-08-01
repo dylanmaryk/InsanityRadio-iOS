@@ -82,17 +82,19 @@ class DataModel {
         }
     }
     
-    static func getNowPlaying() -> (song: String, artist: String) {
+    static func getNowPlaying() -> (song: String, artist: String, album_art: String?) {
         guard let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData else {
-            return ("", "")
+            return ("", "", "")
         }
         
-        let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as! [String: String]
+        let nowPlaying = NSKeyedUnarchiver.unarchiveObjectWithData(nowPlayingData) as? [String: AnyObject]
         
-        let song = nowPlaying["song"]!
-        let artist = nowPlaying["artist"]!
+        let song = nowPlaying!["song"] as! String
+        let artist = nowPlaying!["artist"] as! String
         
-        return (song, artist)
+        let album_art = nowPlaying!["album_art"] as? String
+        
+        return (song, artist, album_art)
     }
     
     static func getSchedule() -> [String: [[String: AnyObject]]]? {
@@ -105,7 +107,7 @@ class DataModel {
     
     static func getShareText() -> String {
         guard let shareTextData = NSUserDefaults.standardUserDefaults().objectForKey("shareText") as? NSData else {
-            return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+            return "I'm listening to Insanity Radio via the Insanity Radio 103.2FM app https://insanityradio.com/listen/"
         }
         
         return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextData) as! String
@@ -113,7 +115,7 @@ class DataModel {
     
     static func getShareTextTwitter() -> String {
         guard let shareTextTwitterData = NSUserDefaults.standardUserDefaults().objectForKey("shareTextTwitter") as? NSData else {
-            return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app www.insanityradio.com/listen"
+            return "I'm listening to @InsanityRadio via the Insanity Radio 103.2FM app https://insanityradio.com/listen/"
         }
         
         return NSKeyedUnarchiver.unarchiveObjectWithData(shareTextTwitterData) as! String
@@ -131,8 +133,8 @@ class DataModel {
         let manager = AFHTTPRequestOperationManager()
         manager.requestSerializer.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         manager.responseSerializer = AFJSONResponseSerializer()
-        let requestOperation = manager.GET("http://www.insanityradio.com/app.json", parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
-            if let nowPlaying = responseObject["nowPlaying"] as? [String: String] {
+        let requestOperation = manager.GET("https://insanityradio.com/listen/load_status.json?v=" + API_VERSION, parameters: nil, success: {(operation: AFHTTPRequestOperation, responseObject: AnyObject) -> Void in
+            if let nowPlaying = responseObject["nowPlaying"] as? [String: AnyObject] {
                 self.setUserDefaultsObjectArchived(nowPlaying, forKey: "nowPlaying")
             }
             

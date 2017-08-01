@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DDBFBD7772416FC751AD39 /* libPods.a */; };
+		7DBB05CF1EF317220063DA05 /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05CE1EF317220063DA05 /* launchimage.png */; };
+		7DBB05D11EF317560063DA05 /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05D01EF317560063DA05 /* insanity-icon.png */; };
+		7DBB05D31EF318020063DA05 /* social.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB05D21EF318020063DA05 /* social.png */; };
+		9B6F6E3B6A1BB45A764BD48D /* libPods-InsanityRadio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D967B35103950F0A62DB57C /* libPods-InsanityRadio.a */; };
 		FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */; };
 		FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC42CFD01B718425003A3251 /* AVFoundation.framework */; };
 		FC5B3E0B1B7E661E004D258E /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E091B7E661E004D258E /* play.png */; };
 		FC5B3E0C1B7E661E004D258E /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0A1B7E661E004D258E /* stop.png */; };
-		FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0D1B7F71E3004D258E /* launchimage.png */; };
-		FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */; };
 		FC8D8A2C1B1B883E004E2065 /* Packet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A271B1B883E004E2065 /* Packet.m */; };
 		FC8D8A2D1B1B883E004E2065 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A291B1B883E004E2065 /* Queue.m */; };
 		FC8D8A2E1B1B883E004E2065 /* Radio.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D8A2B1B1B883E004E2065 /* Radio.m */; };
@@ -41,16 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F8DDBFBD7772416FC751AD39 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5489DCCB85F9BB9874A10329 /* Pods-InsanityRadio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InsanityRadio.release.xcconfig"; path = "Pods/Target Support Files/Pods-InsanityRadio/Pods-InsanityRadio.release.xcconfig"; sourceTree = "<group>"; };
+		5D967B35103950F0A62DB57C /* libPods-InsanityRadio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InsanityRadio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DBB05CE1EF317220063DA05 /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = "../../Pictures/Insanity Logos 2017/Logos/Dark/PNG/launchimage.png"; sourceTree = "<group>"; };
+		7DBB05D01EF317560063DA05 /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "../../Pictures/Insanity Logos 2017/Headphones & Misc/PNGs/insanity-icon.png"; sourceTree = "<group>"; };
+		7DBB05D21EF318020063DA05 /* social.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = social.png; sourceTree = "<group>"; };
+		E8BAF776D6F7D9B45AA643FC /* Pods-InsanityRadio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InsanityRadio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InsanityRadio/Pods-InsanityRadio.debug.xcconfig"; sourceTree = "<group>"; };
 		FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FC42CFD01B718425003A3251 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC4C766E1CB5B90E00B1F962 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		FC5B3E091B7E661E004D258E /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Images/play.png; sourceTree = "<group>"; };
 		FC5B3E0A1B7E661E004D258E /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Images/stop.png; sourceTree = "<group>"; };
-		FC5B3E0D1B7F71E3004D258E /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage.png; path = Images/launchimage.png; sourceTree = "<group>"; };
-		FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "insanity-icon.png"; path = "Images/insanity-icon.png"; sourceTree = "<group>"; };
 		FC8D8A261B1B883E004E2065 /* Packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		FC8D8A271B1B883E004E2065 /* Packet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Packet.m; sourceTree = "<group>"; };
 		FC8D8A281B1B883E004E2065 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 			files = (
 				FC42CFD11B718425003A3251 /* AVFoundation.framework in Frameworks */,
 				FC42CFCC1B7181FE003A3251 /* MediaPlayer.framework in Frameworks */,
-				B31AF3D861BECFB236BBBAFA /* libPods.a in Frameworks */,
+				9B6F6E3B6A1BB45A764BD48D /* libPods-InsanityRadio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,11 +98,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		87489F78404B7CDD57444A93 /* Pods */ = {
+		E155AF9603A893148C8635BF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */,
-				B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */,
+				E8BAF776D6F7D9B45AA643FC /* Pods-InsanityRadio.debug.xcconfig */,
+				5489DCCB85F9BB9874A10329 /* Pods-InsanityRadio.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -110,7 +112,7 @@
 			children = (
 				FC42CFD01B718425003A3251 /* AVFoundation.framework */,
 				FC42CFCB1B7181FE003A3251 /* MediaPlayer.framework */,
-				F8DDBFBD7772416FC751AD39 /* libPods.a */,
+				5D967B35103950F0A62DB57C /* libPods-InsanityRadio.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,8 +120,9 @@
 		FC5EA4171B6CFFBB0064AF60 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FC5B3E0F1B7FDBEF004D258E /* insanity-icon.png */,
-				FC5B3E0D1B7F71E3004D258E /* launchimage.png */,
+				7DBB05D21EF318020063DA05 /* social.png */,
+				7DBB05D01EF317560063DA05 /* insanity-icon.png */,
+				7DBB05CE1EF317220063DA05 /* launchimage.png */,
 				FC5B3E091B7E661E004D258E /* play.png */,
 				FC5B3E0A1B7E661E004D258E /* stop.png */,
 			);
@@ -149,7 +152,7 @@
 				FC8D8A251B1B883E004E2065 /* Radio */,
 				FC42CFC91B7181DF003A3251 /* Frameworks */,
 				FCB6904D1B1397A2005F83D7 /* Products */,
-				87489F78404B7CDD57444A93 /* Pods */,
+				E155AF9603A893148C8635BF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,12 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCB6906D1B1397A3005F83D7 /* Build configuration list for PBXNativeTarget "InsanityRadio" */;
 			buildPhases = (
-				7BEE396ED1B26E4570038690 /* Check Pods Manifest.lock */,
+				7C481C5D97982E4EB7122CCE /* [CP] Check Pods Manifest.lock */,
 				FCB690481B1397A2005F83D7 /* Sources */,
 				FCB690491B1397A2005F83D7 /* Frameworks */,
 				FCB6904A1B1397A2005F83D7 /* Resources */,
-				E1DBA92957007AB20B3EBB84 /* Copy Pods Resources */,
-				82E5C7A6853F5ABCA66F84E7 /* Embed Pods Frameworks */,
+				29E16CC25F5729899E27E0D6 /* [CP] Embed Pods Frameworks */,
+				E3CF2161A3CCADA503AC3193 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,12 +258,13 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Insanity Radio";
 				TargetAttributes = {
 					FCB6904B1B1397A2005F83D7 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 583F3QZPX7;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -269,6 +273,7 @@
 					};
 					FCB690621B1397A3005F83D7 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = FCB6904B1B1397A2005F83D7;
 					};
 				};
@@ -297,14 +302,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC5B3E0E1B7F71E3004D258E /* launchimage.png in Resources */,
-				FC5B3E101B7FDBF0004D258E /* insanity-icon.png in Resources */,
+				7DBB05D11EF317560063DA05 /* insanity-icon.png in Resources */,
 				FCB690591B1397A2005F83D7 /* Main.storyboard in Resources */,
 				FCB6905E1B1397A3005F83D7 /* LaunchScreen.xib in Resources */,
 				FC8D8A321B1B8B04004E2065 /* LICENSE in Resources */,
 				FC5B3E0C1B7E661E004D258E /* stop.png in Resources */,
 				FCB6905B1B1397A3005F83D7 /* Images.xcassets in Resources */,
 				FC5B3E0B1B7E661E004D258E /* play.png in Resources */,
+				7DBB05CF1EF317220063DA05 /* launchimage.png in Resources */,
+				7DBB05D31EF318020063DA05 /* social.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,49 +324,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7BEE396ED1B26E4570038690 /* Check Pods Manifest.lock */ = {
+		29E16CC25F5729899E27E0D6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InsanityRadio/Pods-InsanityRadio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82E5C7A6853F5ABCA66F84E7 /* Embed Pods Frameworks */ = {
+		7C481C5D97982E4EB7122CCE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E1DBA92957007AB20B3EBB84 /* Copy Pods Resources */ = {
+		E3CF2161A3CCADA503AC3193 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InsanityRadio/Pods-InsanityRadio-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -433,8 +439,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -457,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -479,8 +487,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -496,9 +506,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -506,36 +517,38 @@
 		};
 		FCB6906E1B1397A3005F83D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8503D048AF6196B5FF91365B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E8BAF776D6F7D9B45AA643FC /* Pods-InsanityRadio.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanityradio.insanityradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		FCB6906F1B1397A3005F83D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D8958238E7975C84DF7043 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5489DCCB85F9BB9874A10329 /* Pods-InsanityRadio.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InsanityRadio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanityradio.insanityradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = InsanityRadio/Bridge.h;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -556,6 +569,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.insanityradio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InsanityRadio.app/InsanityRadio";
 			};
 			name = Debug;
@@ -572,6 +586,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.insanityradio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InsanityRadio.app/InsanityRadio";
 			};
 			name = Release;
