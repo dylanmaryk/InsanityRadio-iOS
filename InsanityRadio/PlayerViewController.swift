@@ -68,7 +68,7 @@ class PlayerViewController: UIViewController, RadioDelegate {
         let nowPlaying = DataModel.getNowPlaying()
         nowPlayingLabel.text = nowPlaying.song + "\n" + nowPlaying.artist
         
-        if let art = nowPlaying.album_art {
+        if let art = nowPlaying.albumArt {
             updateImageWithURL(art)
         } else {
             self.displayCurrentShowImage()

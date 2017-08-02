@@ -82,7 +82,7 @@ class DataModel {
         }
     }
     
-    static func getNowPlaying() -> (song: String, artist: String, album_art: String?) {
+    static func getNowPlaying() -> (song: String, artist: String, albumArt: String?) {
         guard let nowPlayingData = NSUserDefaults.standardUserDefaults().objectForKey("nowPlaying") as? NSData else {
             return ("", "", "")
         }
@@ -92,9 +92,9 @@ class DataModel {
         let song = nowPlaying!["song"] as! String
         let artist = nowPlaying!["artist"] as! String
         
-        let album_art = nowPlaying!["album_art"] as? String
+        let albumArt = nowPlaying!["album_art"] as? String
         
-        return (song, artist, album_art)
+        return (song, artist, albumArt)
     }
     
     static func getSchedule() -> [String: [[String: AnyObject]]]? {
